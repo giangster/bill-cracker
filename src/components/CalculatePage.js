@@ -10,7 +10,7 @@ export default class CalculatePage extends Component {
   render() {
     return (
       <div>
-        {this.isCalculatePage && (
+        {this.props.isCalculatePage && (
           <div>
             <p>
               Okay. Let's enter some data before we can calculate your expense!

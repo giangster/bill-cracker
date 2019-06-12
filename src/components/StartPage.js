@@ -45,7 +45,10 @@ export default class StartPage extends Component {
         )}
         {this.isCalculatePage && (
           <div>
-            <CalculatePage isStartPage={this.isStartPage} />
+            <CalculatePage
+              isCalculatePage={this.state.isCalculatePage}
+              isStartPage={this.isStartPage}
+            />
           </div>
         )}
       </div>
