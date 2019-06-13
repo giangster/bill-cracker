@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CalculatePage from "./CalculatePage";
+import Snackbar from "@material-ui/core/Snackbar";
 
 export default class StartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      message: "",
+      messageStatusOpen: false,
       isStartPage: true,
       isCalculatePage: false,
       noOfMember: null,
-      nameOfTrip: ""
+      nameOfTrip: "My trip"
     };
   }
 
@@ -24,6 +27,10 @@ export default class StartPage extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleClose = () => {
+    this.setState({ messageOpenStatus: false });
   };
 
   render() {
@@ -44,22 +51,38 @@ export default class StartPage extends Component {
             </div>
             <div>
               <TextField
+                required
                 onChange={this.handleChange}
                 autoFocus
                 margin="dense"
                 name="noOfMember"
                 label="Number of people"
                 type="number"
+                InputProps={{ inputProps: { min: 2, max: 30 } }}
               />
             </div>
             <div style={{ margin: 15 }}>
               <Button
+                type="submit"
                 variant="contained"
                 color="primary"
                 onClick={this.isCalculatePage}
               >
                 Let's go!
               </Button>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center"
+                }}
+                open={this.state.messageOpenStatus}
+                autoHideDuration={2000}
+                onClose={this.handleClose}
+                ContentProps={{
+                  "aria-describedby": "message-id"
+                }}
+                message={this.state.message}
+              />
             </div>
           </div>
         )}

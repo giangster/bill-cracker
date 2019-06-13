@@ -14,8 +14,8 @@ export default class CalculatePage extends Component {
     for (var i = 0; i < this.props.noOfMember; i++) {
       members.push(
         <FormControl>
-          <TextField label="Name" type="text" />
-          <TextField label="Spent money" type="number" />
+          <TextField required label="Name" type="text" />
+          <TextField required label="Spent money" type="number" />
         </FormControl>
       );
     }
