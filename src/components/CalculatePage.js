@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
+import Expense from "./Expense";
 
 export default class CalculatePage extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ export default class CalculatePage extends Component {
                 Calculate
               </Button>
             </div>
+            <Expense />
           </div>
         )}
       </div>
