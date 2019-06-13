@@ -58,7 +58,6 @@ export default class StartPage extends Component {
                 name="noOfMember"
                 label="Number of people"
                 type="number"
-                InputProps={{ inputProps: { min: 2, max: 30 } }}
               />
             </div>
             <div style={{ margin: 15 }}>
