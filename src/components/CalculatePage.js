@@ -27,14 +27,27 @@ export default class CalculatePage extends Component {
             <p>
               Okay. Let's enter some data before we can calculate your share!
             </p>
-            {members}
+            {members.map((form, index) => (
+              <ul key={index} style={{ listStyleType: "none" }}>
+                <li>{form}</li>
+              </ul>
+            ))}
             <div style={{ margin: 15 }}>
               <Button
+                style={{ position: "static" }}
+                variant="contained"
+                color="default"
+                onClick={this.props.isStartPage}
+              >
+                &laquo; Back
+              </Button>
+              <Button
+                style={{ marginLeft: 15 }}
                 variant="contained"
                 color="primary"
                 onClick={this.props.isStartPage}
               >
-                &laquo; Back
+                Calculate
               </Button>
             </div>
           </div>
