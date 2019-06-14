@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Expense from "./Expense";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
 export default class CalculatePage extends Component {
   constructor(props) {
@@ -11,13 +13,25 @@ export default class CalculatePage extends Component {
   }
 
   render() {
+    const inner = (
+      <Box
+        bgcolor="background.paper"
+        m={1}
+        border={1}
+        style={{ width: "5rem", height: "5rem" }}
+      />
+    );
     var members = [];
     for (var i = 0; i < this.props.noOfMember; i++) {
       members.push(
-        <FormControl>
-          <TextField required label="Name" type="text" />
-          <TextField required label="Spent money" type="number" />
-        </FormControl>
+        <Grid container justify="center">
+          <Box borderColor="primary.main" clone>
+            <FormControl>
+              <TextField required label="Name" type="text" />
+              <TextField required label="Spent money" type="number" />
+            </FormControl>
+          </Box>
+        </Grid>
       );
     }
     return (

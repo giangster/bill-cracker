@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 const Expense = props => {
   return (
     <div>
-      <TextField label="Trip name" type="text" placeholder="My awesome trip" />
+      <p>Here's your share!</p>
     </div>
   );
 };
