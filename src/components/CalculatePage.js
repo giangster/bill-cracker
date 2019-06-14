@@ -7,8 +7,19 @@ import Expense from "./Expense";
 export default class CalculatePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { isStartPage: false, isCalculatePage: true };
+    this.state = {
+      isStartPage: false,
+      isCalculatePage: true,
+      isResultPage: false
+    };
   }
+
+  isResultPage = () => {
+    this.setState({
+      ...this.state,
+      isResultPage: true
+    });
+  };
 
   render() {
     var members = [];
@@ -19,12 +30,14 @@ export default class CalculatePage extends Component {
             margin: "auto",
             width: "20%",
             borderWidth: 0.5,
-            borderStyle: "solid",
-            borderColor: "primary",
+            borderStyle: "outset",
+            borderRadius: "5%",
             paddingBottom: 15
           }}
         >
-          <p>Participant {i + 1}</p>
+          <p>
+            <strong>Participant {i + 1}</strong>
+          </p>
           <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
             <TextField required label="Name" type="text" />
             <TextField required label="Spent money" type="number" />
@@ -36,7 +49,9 @@ export default class CalculatePage extends Component {
       <div>
         {this.props.isCalculatePage && (
           <div>
-            <p>{this.props.nameOfTrip}</p>
+            <p>
+              <strong>{this.props.nameOfTrip}</strong>
+            </p>
             <p>
               Okay. Let's enter some data before we can calculate your share!
             </p>
@@ -45,9 +60,9 @@ export default class CalculatePage extends Component {
                 <li>{form}</li>
               </ul>
             ))}
-            <div style={{ margin: 15 }}>
+            <div style={{ margin: "auto" }}>
               <Button
-                style={{ position: "static" }}
+                style={{ marginLeft: 15 }}
                 variant="contained"
                 color="default"
                 onClick={this.props.isStartPage}
@@ -58,12 +73,12 @@ export default class CalculatePage extends Component {
                 style={{ marginLeft: 15 }}
                 variant="contained"
                 color="primary"
-                onClick={this.props.isStartPage}
+                onClick={this.isResultPage}
               >
                 Calculate
               </Button>
             </div>
-            <Expense />
+            {this.state.isResultPage && <Expense />}
           </div>
         )}
       </div>
