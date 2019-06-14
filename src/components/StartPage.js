@@ -37,7 +37,7 @@ export default class StartPage extends Component {
     return (
       <div>
         {this.state.isStartPage && (
-          <div>
+          <div style={{ height: 400 }}>
             <div>
               <TextField
                 onChange={this.handleChange}

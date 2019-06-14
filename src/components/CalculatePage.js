@@ -32,6 +32,7 @@ export default class CalculatePage extends Component {
             borderWidth: 0.5,
             borderStyle: "outset",
             borderRadius: "5%",
+            backgroundColor: "white",
             paddingBottom: 15
           }}
         >
