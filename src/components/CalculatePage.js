@@ -17,13 +17,14 @@ export default class CalculatePage extends Component {
         <div
           style={{
             margin: "auto",
-            width: "30%",
+            width: "20%",
             borderWidth: 0.5,
             borderStyle: "solid",
             borderColor: "primary",
-            padding: 5
+            paddingBottom: 15
           }}
         >
+          <p>Participant {i + 1}</p>
           <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
             <TextField required label="Name" type="text" />
             <TextField required label="Spent money" type="number" />
