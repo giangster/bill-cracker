@@ -10,7 +10,10 @@ export default class CalculatePage extends Component {
     this.state = {
       isStartPage: false,
       isCalculatePage: true,
-      isResultPage: false
+      isResultPage: false,
+      data: [],
+      name: "",
+      money: null
     };
   }
 
@@ -23,6 +26,14 @@ export default class CalculatePage extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleInput = event => {
+    let object = {
+      name: event.target.value,
+      money: event.target.value
+    };
+    this.setState({ data: [...this.state.data, object] });
   };
 
   render() {
@@ -46,12 +57,14 @@ export default class CalculatePage extends Component {
           <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
             <TextField
               required
+              name="name"
               label="Name"
               type="text"
               onChange={this.handleInPut}
             />
             <TextField
               required
+              name="money"
               label="Spent money"
               type="number"
               onChange={this.handleInPut}
