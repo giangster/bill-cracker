@@ -21,6 +21,10 @@ export default class CalculatePage extends Component {
     });
   };
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     var members = [];
     for (var i = 0; i < this.props.noOfMember; i++) {
@@ -40,8 +44,18 @@ export default class CalculatePage extends Component {
             <strong>Participant {i + 1}</strong>
           </p>
           <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
-            <TextField required label="Name" type="text" />
-            <TextField required label="Spent money" type="number" />
+            <TextField
+              required
+              label="Name"
+              type="text"
+              onChange={this.handleInPut}
+            />
+            <TextField
+              required
+              label="Spent money"
+              type="number"
+              onChange={this.handleInPut}
+            />
           </FormControl>
         </div>
       );
@@ -79,7 +93,9 @@ export default class CalculatePage extends Component {
                 Calculate
               </Button>
             </div>
-            {this.state.isResultPage && <Expense />}
+            {this.state.isResultPage && (
+              <Expense noOfMember={this.props.noOfMember} />
+            )}
           </div>
         )}
       </div>
