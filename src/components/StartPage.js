@@ -9,7 +9,7 @@ export default class StartPage extends Component {
     super(props);
     this.state = {
       message: "",
-      messageStatusOpen: false,
+      messageOpenStatus: false,
       isStartPage: true,
       isCalculatePage: false,
       noOfMember: null,
@@ -18,11 +18,25 @@ export default class StartPage extends Component {
   }
 
   isCalculatePage = () => {
-    this.setState({ ...this.state, isStartPage: false, isCalculatePage: true });
+    this.state.noOfMember != null
+      ? this.setState({
+          ...this.state,
+          isStartPage: false,
+          isCalculatePage: true
+        })
+      : this.setState({
+          messageOpenStatus: true,
+          message: "Number of participant is required"
+        });
   };
 
   isStartPage = () => {
-    this.setState({ ...this.state, isStartPage: true, isCalculatePage: false });
+    this.setState({
+      ...this.state,
+      isStartPage: true,
+      isCalculatePage: false,
+      noOfMember: null
+    });
   };
 
   handleChange = event => {
