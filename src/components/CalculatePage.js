@@ -18,11 +18,11 @@ export default class CalculatePage extends Component {
   }
 
   isResultPage = () => {
+    this.addData();
     this.setState({
       ...this.state,
       isResultPage: true
     });
-    this.addData();
   };
 
   handleInput = event => {
@@ -36,6 +36,7 @@ export default class CalculatePage extends Component {
       name: this.state.name,
       money: this.state.money
     };
+    console.log(object);
     this.setState({ data: [...this.state.data, object] });
     console.log(this.state.data);
   };
