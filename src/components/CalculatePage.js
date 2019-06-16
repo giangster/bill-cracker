@@ -13,7 +13,7 @@ export default class CalculatePage extends Component {
       isResultPage: false,
       data: [],
       name: "",
-      money: null
+      money: undefined
     };
   }
 
@@ -22,16 +22,19 @@ export default class CalculatePage extends Component {
       ...this.state,
       isResultPage: true
     });
-    this.handleInput();
-  };
-
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.addData();
   };
 
   handleInput = event => {
-    let object = {
+    this.setState({
       [event.target.name]: event.target.value
+    });
+  };
+
+  addData = () => {
+    let object = {
+      name: this.state.name,
+      money: this.state.money
     };
     this.setState({ data: [...this.state.data, object] });
     console.log(this.state.data);
@@ -62,6 +65,7 @@ export default class CalculatePage extends Component {
               label="Name"
               type="text"
               onChange={this.handleInPut}
+              value={this.state.name}
             />
             <TextField
               required
@@ -69,6 +73,7 @@ export default class CalculatePage extends Component {
               label="Spent money"
               type="number"
               onChange={this.handleInPut}
+              value={this.state.money}
             />
           </FormControl>
         </div>
