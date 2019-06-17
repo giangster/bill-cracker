@@ -76,6 +76,14 @@ export default class CalculatePage extends Component {
               onChange={this.handleInPut}
               value={this.state.money}
             />
+            <Button
+              style={{ marginLeft: 15 }}
+              variant="contained"
+              color="primary"
+              onClick={this.isResultPage}
+            >
+              Calculate
+            </Button>
           </FormControl>
         </div>
       );
