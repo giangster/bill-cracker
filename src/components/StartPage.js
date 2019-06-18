@@ -52,27 +52,39 @@ export default class StartPage extends Component {
       <div>
         {this.state.isStartPage && (
           <div style={{ height: 400 }}>
-            <div>
-              <TextField
-                onChange={this.handleChange}
-                autoFocus
-                margin="dense"
-                name="nameOfTrip"
-                label="Trip name"
-                type="text"
-                placeholder="My awesome trip"
-              />
-            </div>
-            <div>
-              <TextField
-                required
-                onChange={this.handleChange}
-                autoFocus
-                margin="dense"
-                name="noOfMember"
-                label="Number of people"
-                type="number"
-              />
+            <div
+              style={{
+                margin: "auto",
+                width: "20%",
+                borderWidth: 0.5,
+                borderStyle: "outset",
+                borderRadius: "5%",
+                backgroundColor: "white",
+                paddingBottom: 15
+              }}
+            >
+              <div>
+                <TextField
+                  onChange={this.handleChange}
+                  autoFocus
+                  margin="dense"
+                  name="nameOfTrip"
+                  label="Trip name"
+                  type="text"
+                  placeholder="My awesome trip"
+                />
+              </div>
+              <div>
+                <TextField
+                  required
+                  onChange={this.handleChange}
+                  autoFocus
+                  margin="dense"
+                  name="noOfMember"
+                  label="Number of people"
+                  type="number"
+                />
+              </div>
             </div>
             <div style={{ margin: 15 }}>
               <Button
