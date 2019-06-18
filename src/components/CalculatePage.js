@@ -32,6 +32,7 @@ export default class CalculatePage extends Component {
       participant: this.state.participant,
       money: this.state.money
     };
+
     dataTemp.push(object);
 
     this.setState({
