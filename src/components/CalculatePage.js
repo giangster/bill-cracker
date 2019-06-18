@@ -85,7 +85,7 @@ export default class CalculatePage extends Component {
                       name="participant"
                       label="Participant"
                       type="text"
-                      onChange={this.handleInput}
+                      onChange={this.handleParticipant}
                       value={this.state.participant}
                     />
                     <TextField
@@ -93,7 +93,7 @@ export default class CalculatePage extends Component {
                       name="money"
                       label="Spent money"
                       type="number"
-                      onChange={this.handleInput}
+                      onChange={this.handleMoney}
                       value={this.state.money}
                     />
                   </FormControl>
