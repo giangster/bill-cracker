@@ -18,28 +18,44 @@ export default class CalculatePage extends Component {
   }
 
   isResultPage = () => {
-    this.addData();
+    // this.addData();
     this.setState({
       ...this.state,
       isResultPage: true
     });
   };
 
-  handleInput = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+  handleInput = (e, i) => {
+    const value = e.target.value;
+    const name = e.target.name;
 
-  addData = () => {
     let object = {
-      name: this.state.name,
-      money: this.state.money
+      name: name,
+      money: value
     };
     console.log(object);
-    this.setState({ data: [...this.state.data, object] });
+
+    this.setState({
+      data: {
+        ...this.state.data,
+        [i]: {
+          ...this.state.data[i],
+          object
+        }
+      }
+    });
     console.log(this.state.data);
   };
+
+  // addData = () => {
+  //   let object = {
+  //     name: this.state.name,
+  //     money: this.state.money
+  //   };
+  //   console.log(object);
+  //   this.setState({ data: [...this.state.data, object] });
+  //   console.log(this.state.data);
+  // };
 
   render() {
     var members = [];
@@ -62,28 +78,20 @@ export default class CalculatePage extends Component {
           <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
             <TextField
               required
-              name="name"
+              name={`name${i}`}
               label="Name"
               type="text"
-              onChange={this.handleInPut}
+              onChange={e => this.handleInput(e, i)}
               value={this.state.name}
             />
             <TextField
               required
-              name="money"
+              name={`money${i}`}
               label="Spent money"
               type="number"
-              onChange={this.handleInPut}
+              onChange={e => this.handleInput(e, i)}
               value={this.state.money}
             />
-            <Button
-              style={{ marginLeft: 15 }}
-              variant="contained"
-              color="primary"
-              onClick={this.isResultPage}
-            >
-              Calculate
-            </Button>
           </FormControl>
         </div>
       );
