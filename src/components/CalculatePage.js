@@ -26,30 +26,21 @@ export default class CalculatePage extends Component {
   };
 
   handleInput = (e, index) => {
-    let object = {
-      [e.target.name]: e.target.value
+    this.setState({ [e.target.name]: e.target.value });
+    const object = {
+      participant: this.state.participant,
+      money: this.state.money
     };
+
     this.setState({
       data: {
         ...this.state.data,
-        [index]: {
-          ...this.state.data[index],
-          object
-        }
+        object
       }
     });
+
     console.log(this.state.data);
   };
-
-  // addData = () => {
-  //   let object = {
-  //     name: this.state.name,
-  //     money: this.state.money
-  //   };
-  //   console.log(object);
-  //   this.setState({ data: [...this.state.data, object] });
-  //   console.log(this.state.data);
-  // };
 
   render() {
     var members = [];
@@ -94,7 +85,7 @@ export default class CalculatePage extends Component {
                       name="participant"
                       label="Participant"
                       type="text"
-                      onChange={e => this.handleInput(e, i)}
+                      onChange={this.handleInput}
                       value={this.state.participant}
                     />
                     <TextField
@@ -102,7 +93,7 @@ export default class CalculatePage extends Component {
                       name="money"
                       label="Spent money"
                       type="number"
-                      onChange={e => this.handleInput(e, i)}
+                      onChange={this.handleInput}
                       value={this.state.money}
                     />
                   </FormControl>
