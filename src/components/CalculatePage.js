@@ -12,7 +12,7 @@ export default class CalculatePage extends Component {
       isCalculatePage: true,
       isResultPage: false,
       data: [],
-      name: "",
+      participant: "",
       money: undefined
     };
   }
@@ -26,24 +26,15 @@ export default class CalculatePage extends Component {
   };
 
   handleInput = (e, i) => {
-    const value = e.target.value;
-    const name = e.target.name;
+    const value = e.target.value[i];
+    const name = e.target.name[i];
 
     let object = {
-      name: name,
+      participant: name,
       money: value
     };
     console.log(object);
-
-    this.setState({
-      data: {
-        ...this.state.data,
-        [i]: {
-          ...this.state.data[i],
-          object
-        }
-      }
-    });
+    this.setState({ data: [...this.state.data, object] });
     console.log(this.state.data);
   };
 
@@ -78,11 +69,11 @@ export default class CalculatePage extends Component {
           <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
             <TextField
               required
-              name={`name${i}`}
-              label="Name"
+              name={`participant${i}`}
+              label="Participant"
               type="text"
               onChange={e => this.handleInput(e, i)}
-              value={this.state.name}
+              value={this.state.participant}
             />
             <TextField
               required
