@@ -26,15 +26,21 @@ export default class CalculatePage extends Component {
   };
 
   handleInput = (e, i) => {
-    const value = e.target.value[i];
-    const name = e.target.name[i];
-
+    this.setState({ [e.target.name]: e.target.value });
     let object = {
-      participant: name,
-      money: value
+      participant: this.state.participant,
+      money: this.state.money
     };
     console.log(object);
-    this.setState({ data: [...this.state.data, object] });
+    this.setState({
+      data: {
+        ...this.state.data,
+        [i]: {
+          ...this.state.data[i],
+          object
+        }
+      }
+    });
     console.log(this.state.data);
   };
 
@@ -52,38 +58,10 @@ export default class CalculatePage extends Component {
     var members = [];
     for (var i = 0; i < this.props.noOfMember; i++) {
       members.push(
-        <div
-          style={{
-            margin: "auto",
-            width: "20%",
-            borderWidth: 0.5,
-            borderStyle: "outset",
-            borderRadius: "5%",
-            backgroundColor: "white",
-            paddingBottom: 15
-          }}
-        >
+        <div>
           <p>
             <strong>Participant {i + 1}</strong>
           </p>
-          <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
-            <TextField
-              required
-              name={`participant${i}`}
-              label="Participant"
-              type="text"
-              onChange={e => this.handleInput(e, i)}
-              value={this.state.participant}
-            />
-            <TextField
-              required
-              name={`money${i}`}
-              label="Spent money"
-              type="number"
-              onChange={e => this.handleInput(e, i)}
-              value={this.state.money}
-            />
-          </FormControl>
         </div>
       );
     }
@@ -99,7 +77,39 @@ export default class CalculatePage extends Component {
             </p>
             {members.map((form, index) => (
               <ul key={index} style={{ listStyleType: "none" }}>
-                <li>{form}</li>
+                <li
+                  style={{
+                    margin: "auto",
+                    width: "20%",
+                    borderWidth: 0.5,
+                    borderStyle: "outset",
+                    borderRadius: "5%",
+                    backgroundColor: "white",
+                    paddingBottom: 15
+                  }}
+                >
+                  {form}
+                  <FormControl
+                    style={{ borderStyle: "solid", borderColor: "blue" }}
+                  >
+                    <TextField
+                      required
+                      name={`participant${index}`}
+                      label="Participant"
+                      type="text"
+                      onChange={e => this.handleInput(e, i)}
+                      value={this.state.participant}
+                    />
+                    <TextField
+                      required
+                      name={`money${index}`}
+                      label="Spent money"
+                      type="number"
+                      onChange={e => this.handleInput(e, i)}
+                      value={this.state.money}
+                    />
+                  </FormControl>
+                </li>
               </ul>
             ))}
             <div style={{ margin: "auto" }}>
