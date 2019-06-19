@@ -10,35 +10,21 @@ export default class CalculatePage extends Component {
       isStartPage: false,
       isCalculatePage: true,
       isResultPage: false,
-      data: [],
-      participant: "",
-      money: undefined
+      data: []
     };
   }
 
   isResultPage = () => {
-    // this.addData();
     this.setState({
       ...this.state,
       isResultPage: true
     });
   };
 
-  handleInput = (e, index) => {
-    let dataTemp = this.state.data;
-    this.setState({ [e.target.name]: e.target.value });
-    let object = {
-      participant: this.state.participant,
-      money: this.state.money
-    };
-
-    dataTemp.push(object);
-
-    this.setState({
-      data: dataTemp
-    });
-
-    console.log(this.state.data);
+  handleData = object => {
+    let tempData = [];
+    tempData.push(object);
+    this.setState({ data: tempData });
   };
 
   render() {
@@ -76,7 +62,7 @@ export default class CalculatePage extends Component {
                   }}
                 >
                   {form}
-                  <InputComponent />
+                  <InputComponent handleData={this.handleData} />
                 </li>
               </ul>
             ))}
