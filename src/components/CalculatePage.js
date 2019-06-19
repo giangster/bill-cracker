@@ -22,9 +22,9 @@ export default class CalculatePage extends Component {
   };
 
   handleData = object => {
-    let tempData = [];
-    tempData.push(object);
-    this.setState({ data: tempData });
+    console.log(object);
+    this.setState({ data: [...this.state.data, object] });
+    console.log("data from cal page" + this.state.data);
   };
 
   render() {

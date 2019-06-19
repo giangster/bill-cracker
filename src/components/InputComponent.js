@@ -6,7 +6,6 @@ export default class InputComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      object: {},
       participant: "",
       money: undefined
     };
@@ -19,14 +18,13 @@ export default class InputComponent extends Component {
       money: this.state.money
     };
 
-    this.setState({
-      object: object
-    });
-
-    console.log("from input component" + this.state.data);
+    console.log(
+      "from input component" + this.state.participant + this.state.money
+    );
 
     this.props.handleData(object);
   };
+
   render() {
     return (
       <div>
