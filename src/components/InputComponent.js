@@ -13,16 +13,7 @@ export default class InputComponent extends Component {
 
   handleInput = event => {
     this.setState({ [event.target.name]: event.target.value });
-    let object = {
-      participant: this.state.participant,
-      money: this.state.money
-    };
-
-    console.log(
-      "from input component" + this.state.participant + this.state.money
-    );
-
-    this.props.handleData(object);
+    this.props.handleData(this.state.participant, this.state.money);
   };
 
   render() {
