@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
 import Expense from "./Expense";
+import InputComponent from "./InputComponent";
 
 export default class CalculatePage extends Component {
   constructor(props) {
@@ -77,26 +76,7 @@ export default class CalculatePage extends Component {
                   }}
                 >
                   {form}
-                  <FormControl
-                    style={{ borderStyle: "solid", borderColor: "blue" }}
-                  >
-                    <TextField
-                      required
-                      name="participant"
-                      label="Participant"
-                      type="text"
-                      onChange={this.handleInput}
-                      value={this.state.participant}
-                    />
-                    <TextField
-                      required
-                      name="money"
-                      label="Spent money"
-                      type="number"
-                      onChange={this.handleInput}
-                      value={this.state.money}
-                    />
-                  </FormControl>
+                  <InputComponent />
                 </li>
               </ul>
             ))}
