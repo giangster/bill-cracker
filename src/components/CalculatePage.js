@@ -74,9 +74,13 @@ export default class CalculatePage extends Component {
                 &laquo; Back
               </Button>
               <Button
-                style={{ marginLeft: 15 }}
                 variant="contained"
                 color="primary"
+                style={{
+                  marginLeft: 15,
+                  backgroundImage:
+                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+                }}
                 onClick={this.isResultPage}
               >
                 Calculate

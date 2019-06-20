@@ -7,7 +7,7 @@ export default class InputComponent extends Component {
     super(props);
     this.state = {
       participant: "",
-      money: undefined
+      money: 0
     };
   }
 

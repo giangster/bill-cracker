@@ -92,6 +92,10 @@ export default class StartPage extends Component {
                 variant="contained"
                 color="primary"
                 onClick={this.isCalculatePage}
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+                }}
               >
                 Let's go!
               </Button>
