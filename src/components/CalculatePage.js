@@ -37,22 +37,21 @@ export default class CalculatePage extends Component {
     var members = [];
     for (var i = 0; i < this.state.noOfMember; i++) {
       members.push(
-        <div key={i}>
+        <div
+          key={i}
+          style={{
+            margin: "auto",
+            width: "20%",
+            borderWidth: 0.5,
+            borderStyle: "outset",
+            borderRadius: "5%",
+            backgroundColor: "white",
+            padding: 15
+          }}
+        >
           <strong>Participant {i + 1}</strong>
-          <div
-            key={i}
-            style={{
-              margin: "auto",
-              width: "20%",
-              borderWidth: 0.5,
-              borderStyle: "outset",
-              borderRadius: "5%",
-              backgroundColor: "white",
-              paddingBottom: 15
-            }}
-          >
-            <InputComponent key={i} handleInput={this.handleInput} />
-          </div>
+
+          <InputComponent key={i} handleInput={this.handleInput} />
         </div>
       );
     }
@@ -71,8 +70,7 @@ export default class CalculatePage extends Component {
               variant="contained"
               color="primary"
               style={{
-                margin: "auto",
-                marginBottom: 15,
+                margin: 15,
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
