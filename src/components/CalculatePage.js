@@ -25,6 +25,7 @@ export default class CalculatePage extends Component {
     this.setState({
       data: [...this.state.data, object]
     });
+    console.log(this.state.data);
   };
 
   render() {
@@ -62,7 +63,7 @@ export default class CalculatePage extends Component {
                   }}
                 >
                   {form}
-                  <InputComponent handleData={this.handleData} />
+                  <InputComponent handleInput={this.handleInput} />
                 </li>
               </ul>
             ))}
