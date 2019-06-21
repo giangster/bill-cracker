@@ -21,10 +21,6 @@ export default class CalculatePage extends Component {
     });
   };
 
-  handleData = object => {
-    this.setState({ data: [...this.state.data, object] });
-  };
-
   render() {
     var members = [];
     for (var i = 0; i < this.props.noOfMember; i++) {

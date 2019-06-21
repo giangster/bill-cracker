@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
 
 export default class InputComponent extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class InputComponent extends Component {
     };
   }
 
-  handleInput = event => {
+  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
     this.props.handleData(this.state.participant, this.state.money);
   };
@@ -25,7 +26,7 @@ export default class InputComponent extends Component {
             name="participant"
             label="Participant"
             type="text"
-            onChange={this.handleInput}
+            onChange={this.handleChange}
             value={this.state.participant}
           />
           <TextField
@@ -33,9 +34,10 @@ export default class InputComponent extends Component {
             name="money"
             label="Spent money"
             type="number"
-            onChange={this.handleInput}
+            onChange={this.handleChange}
             value={this.state.money}
           />
+          <Button onClick={this.handleInput} />
         </FormControl>
       </div>
     );
