@@ -14,7 +14,15 @@ export default class InputComponent extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    this.props.handleData(this.state.participant, this.state.money);
+  };
+
+  handleInput = event => {
+    let data = {
+      participant: this.state.participant,
+      money: this.state.money
+    };
+
+    this.props.handleInput(data);
   };
 
   render() {
@@ -37,7 +45,22 @@ export default class InputComponent extends Component {
             onChange={this.handleChange}
             value={this.state.money}
           />
-          <Button onClick={this.handleInput} />
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{
+                width: 15,
+                margin: "auto",
+                marginTop: 15,
+                backgroundImage:
+                  "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+              }}
+              onClick={this.handleInput}
+            >
+              Add
+            </Button>
+          </div>
         </FormControl>
       </div>
     );
