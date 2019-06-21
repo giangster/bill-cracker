@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Expense from "./Expense";
 import InputComponent from "./InputComponent";
+import Snackbar from "@material-ui/core/Snackbar";
 
 export default class CalculatePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      message: "",
+      messageOpenStatus: false,
       isStartPage: false,
       isCalculatePage: true,
       isResultPage: false,
@@ -16,7 +19,12 @@ export default class CalculatePage extends Component {
   }
 
   addInputComponent = () => {
-    this.setState({ noOfMember: this.state.noOfMember + 1 });
+    this.state.data.length < this.state.noOfMember
+      ? this.setState({
+          messageOpenStatus: true,
+          message: 'Please click "Add" before adding new participant'
+        })
+      : this.setState({ noOfMember: this.state.noOfMember + 1 });
   };
 
   isResultPage = () => {
@@ -31,6 +39,10 @@ export default class CalculatePage extends Component {
       data: [...this.state.data, object]
     });
     console.log(this.state.data);
+  };
+
+  handleClose = () => {
+    this.setState({ messageOpenStatus: false });
   };
 
   render() {
@@ -63,7 +75,7 @@ export default class CalculatePage extends Component {
               <strong>{this.props.nameOfTrip}</strong>
             </p>
             <p>
-              Okay. Let's add some participant before we can calculate your
+              Okay. Let's add some more information before we can calculate your
               share!
             </p>
             {members}
@@ -101,6 +113,19 @@ export default class CalculatePage extends Component {
               >
                 Calculate
               </Button>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center"
+                }}
+                open={this.state.messageOpenStatus}
+                autoHideDuration={2000}
+                onClose={this.handleClose}
+                ContentProps={{
+                  "aria-describedby": "message-id"
+                }}
+                message={this.state.message}
+              />
             </div>
             {this.state.isResultPage && (
               <Expense noOfMember={this.props.noOfMember} />

@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
 
 export default class InputComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      message: "",
+      messageOpenStatus: false,
       participant: "",
       money: 0
     };
@@ -17,13 +20,24 @@ export default class InputComponent extends Component {
   };
 
   handleInput = () => {
-    let data = {
-      participant: this.state.participant,
-      money: this.state.money
-    };
-    console.log(this.state.participant + " " + this.state.money);
+    if (this.state.participant !== "") {
+      let data = {
+        participant: this.state.participant,
+        money: this.state.money
+      };
+      console.log(this.state.participant + " " + this.state.money);
 
-    this.props.handleInput(data);
+      this.props.handleInput(data);
+    } else {
+      this.setState({
+        messageOpenStatus: true,
+        message: "Name can not be empty"
+      });
+    }
+  };
+
+  handleClose = () => {
+    this.setState({ messageOpenStatus: false });
   };
 
   render() {
@@ -64,6 +78,19 @@ export default class InputComponent extends Component {
             </Button>
           </div>
         </FormControl>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center"
+          }}
+          open={this.state.messageOpenStatus}
+          autoHideDuration={2000}
+          onClose={this.handleClose}
+          ContentProps={{
+            "aria-describedby": "message-id"
+          }}
+          message={this.state.message}
+        />
       </div>
     );
   }
