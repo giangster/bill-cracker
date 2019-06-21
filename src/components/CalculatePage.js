@@ -63,7 +63,8 @@ export default class CalculatePage extends Component {
               <strong>{this.props.nameOfTrip}</strong>
             </p>
             <p>
-              Okay. Let's enter some data before we can calculate your share!
+              Okay. Let's add some participant before we can calculate your
+              share!
             </p>
             {members}
             <Button
