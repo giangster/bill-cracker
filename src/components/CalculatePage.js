@@ -10,27 +10,13 @@ export default class CalculatePage extends Component {
       isStartPage: false,
       isCalculatePage: true,
       isResultPage: false,
-      isInputComponent: false,
+      noOfMember: 0,
       data: []
     };
   }
 
   addInputComponent = () => {
-    return (
-      <div
-        style={{
-          margin: "auto",
-          width: "20%",
-          borderWidth: 0.5,
-          borderStyle: "outset",
-          borderRadius: "5%",
-          backgroundColor: "white",
-          paddingBottom: 15
-        }}
-      >
-        <InputComponent handleInput={this.handleInput} />
-      </div>
-    );
+    this.setState({ noOfMember: this.state.noOfMember + 1 });
   };
 
   isResultPage = () => {
@@ -48,6 +34,28 @@ export default class CalculatePage extends Component {
   };
 
   render() {
+    var members = [];
+    for (var i = 0; i < this.state.noOfMember; i++) {
+      members.push(
+        <div key={i}>
+          <strong>Participant {i + 1}</strong>
+          <div
+            key={i}
+            style={{
+              margin: "auto",
+              width: "20%",
+              borderWidth: 0.5,
+              borderStyle: "outset",
+              borderRadius: "5%",
+              backgroundColor: "white",
+              paddingBottom: 15
+            }}
+          >
+            <InputComponent key={i} handleInput={this.handleInput} />
+          </div>
+        </div>
+      );
+    }
     return (
       <div>
         {this.props.isCalculatePage && (
@@ -58,7 +66,20 @@ export default class CalculatePage extends Component {
             <p>
               Okay. Let's enter some data before we can calculate your share!
             </p>
-            <Button onClick={this.addInputComponent}>Add participant</Button>
+            {members}
+            <Button
+              variant="contained"
+              color="primary"
+              style={{
+                margin: "auto",
+                marginBottom: 15,
+                backgroundImage:
+                  "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+              }}
+              onClick={this.addInputComponent}
+            >
+              Add participant
+            </Button>
 
             <div style={{ margin: "auto" }}>
               <Button

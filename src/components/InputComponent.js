@@ -8,7 +8,7 @@ export default class InputComponent extends Component {
     super(props);
     this.state = {
       participant: "",
-      money: undefined
+      money: 0
     };
   }
 
@@ -46,6 +46,7 @@ export default class InputComponent extends Component {
             onChange={this.handleChange}
             value={this.state.money}
           />
+          <TextField name="description" label="Description" type="text" />
           <div>
             <Button
               variant="contained"

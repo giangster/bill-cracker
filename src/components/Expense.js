@@ -3,7 +3,7 @@ import React from "react";
 const Expense = props => {
   return (
     <div>
-      <p>Here's your share! {props.noOfMember}</p>
+      <p>Here's your share! </p>
     </div>
   );
 };
