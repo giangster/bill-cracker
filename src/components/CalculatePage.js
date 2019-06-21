@@ -10,9 +10,28 @@ export default class CalculatePage extends Component {
       isStartPage: false,
       isCalculatePage: true,
       isResultPage: false,
+      isInputComponent: false,
       data: []
     };
   }
+
+  addInputComponent = () => {
+    return (
+      <div
+        style={{
+          margin: "auto",
+          width: "20%",
+          borderWidth: 0.5,
+          borderStyle: "outset",
+          borderRadius: "5%",
+          backgroundColor: "white",
+          paddingBottom: 15
+        }}
+      >
+        <InputComponent handleInput={this.handleInput} />
+      </div>
+    );
+  };
 
   isResultPage = () => {
     this.setState({
@@ -29,16 +48,6 @@ export default class CalculatePage extends Component {
   };
 
   render() {
-    var members = [];
-    for (var i = 0; i < this.props.noOfMember; i++) {
-      members.push(
-        <div>
-          <p>
-            <strong>Participant {i + 1}</strong>
-          </p>
-        </div>
-      );
-    }
     return (
       <div>
         {this.props.isCalculatePage && (
@@ -49,24 +58,8 @@ export default class CalculatePage extends Component {
             <p>
               Okay. Let's enter some data before we can calculate your share!
             </p>
-            {members.map((form, index) => (
-              <ul key={index} style={{ listStyleType: "none" }}>
-                <li
-                  style={{
-                    margin: "auto",
-                    width: "20%",
-                    borderWidth: 0.5,
-                    borderStyle: "outset",
-                    borderRadius: "5%",
-                    backgroundColor: "white",
-                    paddingBottom: 15
-                  }}
-                >
-                  {form}
-                  <InputComponent handleInput={this.handleInput} />
-                </li>
-              </ul>
-            ))}
+            <Button onClick={this.addInputComponent}>Add participant</Button>
+
             <div style={{ margin: "auto" }}>
               <Button
                 style={{ marginLeft: 15 }}

@@ -12,13 +12,12 @@ export default class StartPage extends Component {
       messageOpenStatus: false,
       isStartPage: true,
       isCalculatePage: false,
-      noOfMember: null,
-      nameOfTrip: "My trip"
+      nameOfTrip: undefined
     };
   }
 
   isCalculatePage = () => {
-    this.state.noOfMember != null
+    this.state.nameOfTrip !== undefined
       ? this.setState({
           ...this.state,
           isStartPage: false,
@@ -26,7 +25,7 @@ export default class StartPage extends Component {
         })
       : this.setState({
           messageOpenStatus: true,
-          message: "Number of participant is required"
+          message: "Trip name is required"
         });
   };
 
@@ -35,7 +34,7 @@ export default class StartPage extends Component {
       ...this.state,
       isStartPage: true,
       isCalculatePage: false,
-      noOfMember: null
+      nameOfTrip: undefined
     });
   };
 
@@ -65,6 +64,7 @@ export default class StartPage extends Component {
             >
               <div>
                 <TextField
+                  required
                   onChange={this.handleChange}
                   autoFocus
                   margin="dense"
@@ -72,17 +72,6 @@ export default class StartPage extends Component {
                   label="Trip name"
                   type="text"
                   placeholder="My awesome trip"
-                />
-              </div>
-              <div>
-                <TextField
-                  required
-                  onChange={this.handleChange}
-                  autoFocus
-                  margin="dense"
-                  name="noOfMember"
-                  label="Number of people"
-                  type="number"
                 />
               </div>
             </div>
@@ -121,7 +110,6 @@ export default class StartPage extends Component {
               isCalculatePage={this.state.isCalculatePage}
               isStartPage={this.isStartPage}
               nameOfTrip={this.state.nameOfTrip}
-              noOfMember={this.state.noOfMember}
             />
           </div>
         )}
