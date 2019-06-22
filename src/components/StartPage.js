@@ -12,12 +12,12 @@ export default class StartPage extends Component {
       messageOpenStatus: false,
       isStartPage: true,
       isCalculatePage: false,
-      nameOfTrip: undefined
+      nameOfTrip: ""
     };
   }
 
   isCalculatePage = () => {
-    this.state.nameOfTrip !== undefined
+    this.state.nameOfTrip !== ""
       ? this.setState({
           ...this.state,
           isStartPage: false,

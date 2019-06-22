@@ -53,6 +53,7 @@ export default class CalculatePage extends Component {
           key={i}
           style={{
             margin: "auto",
+            marginTop: 15,
             width: "20%",
             borderWidth: 0.5,
             borderStyle: "outset",
