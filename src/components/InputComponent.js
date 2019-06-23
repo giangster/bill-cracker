@@ -34,11 +34,16 @@ export default class InputComponent extends Component {
       money: this.state.money
     };
 
+    var participantListTemp = this.state.participantList;
+    participantListTemp.push(this.state.participant);
+
     this.props.handleInput(data);
     this.setState({
       messageOpenStatus: true,
-      message: "Data added!"
+      message: "Data added!",
+      participantList: participantListTemp
     });
+    console.log(this.state.participantList);
   };
 
   handleClose = () => {
