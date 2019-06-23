@@ -28,6 +28,10 @@ export default class InputComponent extends Component {
       console.log(this.state.participant + " " + this.state.money);
 
       this.props.handleInput(data);
+      this.setState({
+        messageOpenStatus: true,
+        message: "Data added!"
+      });
     } else {
       this.setState({
         messageOpenStatus: true,
