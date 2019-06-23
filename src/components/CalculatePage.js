@@ -35,8 +35,11 @@ export default class CalculatePage extends Component {
   };
 
   handleInput = object => {
+    var dataTemp = this.state.data;
+    dataTemp.push(object);
+    console.log(object);
     this.setState({
-      data: [...this.state.data, object]
+      data: dataTemp
     });
     console.log(this.state.data);
   };

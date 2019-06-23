@@ -11,7 +11,8 @@ export default class InputComponent extends Component {
       message: "",
       messageOpenStatus: false,
       participant: "",
-      money: 0
+      money: 0,
+      participantList: []
     };
   }
 
@@ -20,24 +21,24 @@ export default class InputComponent extends Component {
   };
 
   handleInput = () => {
-    if (this.state.participant !== "") {
-      let data = {
-        participant: this.state.participant,
-        money: this.state.money
-      };
-      console.log(this.state.participant + " " + this.state.money);
-
-      this.props.handleInput(data);
+    //Early return technique
+    if (this.state.participant === "" || this.state.money < 0) {
       this.setState({
         messageOpenStatus: true,
-        message: "Data added!"
+        message: "Name must not be empty and money must not be less than 0"
       });
-    } else {
-      this.setState({
-        messageOpenStatus: true,
-        message: "Name can not be empty"
-      });
+      return;
     }
+    let data = {
+      participant: this.state.participant,
+      money: this.state.money
+    };
+
+    this.props.handleInput(data);
+    this.setState({
+      messageOpenStatus: true,
+      message: "Data added!"
+    });
   };
 
   handleClose = () => {
