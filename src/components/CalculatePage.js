@@ -41,6 +41,7 @@ export default class CalculatePage extends Component {
     this.setState({
       data: dataTemp
     });
+    console.log(this.state.data);
   };
 
   handleClose = () => {
@@ -66,7 +67,11 @@ export default class CalculatePage extends Component {
         >
           <strong>Participant {i + 1}</strong>
 
-          <InputComponent key={i} handleInput={this.handleInput} />
+          <InputComponent
+            key={i}
+            handleInput={this.handleInput}
+            data={this.state.data}
+          />
         </div>
       );
     }

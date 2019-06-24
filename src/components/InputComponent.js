@@ -11,8 +11,7 @@ export default class InputComponent extends Component {
       message: "",
       messageOpenStatus: false,
       participant: "",
-      money: 0,
-      participantList: []
+      money: 0
     };
   }
 
@@ -22,6 +21,7 @@ export default class InputComponent extends Component {
 
   handleInput = () => {
     //Early return technique
+    //Validating input
     if (this.state.participant === "" || this.state.money < 0) {
       this.setState({
         messageOpenStatus: true,
@@ -29,21 +29,26 @@ export default class InputComponent extends Component {
       });
       return;
     }
+    //Ensuring there is no duplicating participant
+    for (var i = 0; i < this.props.data.length; i++) {
+      if (this.state.participant === this.props.data[i].participant) {
+        this.setState({
+          messageOpenStatus: true,
+          message: "There can not be two participant with the same name"
+        });
+        return;
+      }
+    }
     let data = {
       participant: this.state.participant,
       money: this.state.money
     };
 
-    var participantListTemp = this.state.participantList;
-    participantListTemp.push(this.state.participant);
-
     this.props.handleInput(data);
     this.setState({
       messageOpenStatus: true,
-      message: "Data added!",
-      participantList: participantListTemp
+      message: "Data added!"
     });
-    console.log(this.state.participantList);
   };
 
   handleClose = () => {
