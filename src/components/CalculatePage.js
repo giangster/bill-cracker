@@ -136,7 +136,10 @@ export default class CalculatePage extends Component {
               />
             </div>
             {this.state.isResultPage && (
-              <Expense noOfMember={this.props.noOfMember} />
+              <Expense
+                noOfMember={this.state.noOfMember}
+                data={this.state.data}
+              />
             )}
           </div>
         )}
