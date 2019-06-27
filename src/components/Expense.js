@@ -4,28 +4,43 @@ export default class Expense extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sharePerPerson: 0
+      sharePerPerson: 0,
+      result: ""
     };
   }
 
   componentDidMount = () => {
+    var dataTemp = this.props.data;
+    dataTemp.sort(function(participant1, participant2) {
+      return participant1.money - participant2.money;
+    });
     var total = 0;
 
-    this.props.data.forEach(function(item) {
+    dataTemp.forEach(function(item) {
       total = total + parseFloat(item.money);
     });
     var share = total / this.props.data.length;
 
-    // console.log(share);
     this.setState({ sharePerPerson: share });
 
-    // console.log(this.state.sharePerPerson);
     var balanceGeneral = [];
-    this.props.data.forEach(function(item) {
+    var participant = [];
+    dataTemp.forEach(function(item) {
       balanceGeneral.push(parseFloat(item.money) - share);
+      participant.push(item.participant);
     });
 
-    console.log(balanceGeneral);
+    let i = 0;
+    let j = participant.length - 1;
+    let debt;
+
+    while (i < j) {
+      debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j]));
+      console.log();
+      balanceGeneral[i] += debt;
+      balanceGeneral[j] -= debt;
+      balanceGeneral[i] === 0 ? i++ : j--;
+    }
   };
 
   render() {
