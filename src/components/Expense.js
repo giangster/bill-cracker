@@ -5,7 +5,7 @@ export default class Expense extends Component {
     super(props);
     this.state = {
       sharePerPerson: 0,
-      result: ""
+      result: []
     };
   }
 
@@ -19,7 +19,7 @@ export default class Expense extends Component {
     dataTemp.forEach(function(item) {
       total = total + parseFloat(item.money);
     });
-    var share = total / this.props.data.length;
+    var share = (total / this.props.data.length).toFixed(2);
 
     this.setState({ sharePerPerson: share });
 
@@ -33,13 +33,10 @@ export default class Expense extends Component {
     let i = 0;
     let j = participant.length - 1;
     let debt;
-    let result = "";
+    let result = [];
     while (i < j) {
       debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j]));
-      console.log(`${participant[i]} owes ${participant[j]} ${debt} euroes`);
-      result = `${result}
-      ${participant[i]} owes ${participant[j]} ${debt} euroes
-      `;
+      result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
 
       balanceGeneral[i] += debt;
       balanceGeneral[j] -= debt;
@@ -49,12 +46,15 @@ export default class Expense extends Component {
   };
 
   render() {
+    let statementList = this.state.result.map((statement, index) => (
+      <li key={index}>{statement}</li>
+    ));
     return (
       <div>
         <p>Here's the calculation:</p>
-        <p>Each person's share is {this.state.sharePerPerson} euroes.</p>
+        <p>Each person's share is {this.state.sharePerPerson} euros.</p>
         <p>Therefore:</p>
-        <p>{this.state.result}</p>
+        <ul style={{ listStyleType: "none" }}>{statementList}</ul>
       </div>
     );
   }
