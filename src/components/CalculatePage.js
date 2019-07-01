@@ -51,7 +51,7 @@ export default class CalculatePage extends Component {
   clearState = () => {
     this.props.isStartPage();
     console.log(this.state.data);
-    this.setState({ data: [], noOfMember: 0 });
+    this.setState({ data: [], noOfMember: 0, isResultPage: false });
     console.log(this.state.data);
   };
 
