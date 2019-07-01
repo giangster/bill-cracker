@@ -9,7 +9,7 @@ export default class Expense extends Component {
     };
   }
 
-  //Algorithm to calculate the share for each person
+  //Algorithm to calculate the share for each personttf
   componentDidMount = () => {
     var dataTemp = this.props.data;
     dataTemp.sort(function(participant1, participant2) {

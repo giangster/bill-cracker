@@ -48,6 +48,11 @@ export default class CalculatePage extends Component {
     this.setState({ messageOpenStatus: false });
   };
 
+  clearState = () => {
+    this.props.isStartPage();
+    this.setState({ data: [] });
+  };
+
   render() {
     var members = [];
     for (var i = 0; i < this.state.noOfMember; i++) {
@@ -105,7 +110,7 @@ export default class CalculatePage extends Component {
                 style={{ marginLeft: 15 }}
                 variant="contained"
                 color="default"
-                onClick={this.props.isStartPage}
+                onClick={this.clearState}
               >
                 &laquo; Back
               </Button>
