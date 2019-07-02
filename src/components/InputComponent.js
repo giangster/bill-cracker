@@ -11,7 +11,8 @@ export default class InputComponent extends Component {
       message: "",
       messageOpenStatus: false,
       participant: "",
-      money: 0
+      money: 0,
+      description: ""
     };
   }
 
@@ -41,7 +42,8 @@ export default class InputComponent extends Component {
     }
     let data = {
       participant: this.state.participant,
-      money: this.state.money
+      money: this.state.money,
+      description: this.state.description
     };
 
     this.props.handleInput(data);
@@ -75,7 +77,13 @@ export default class InputComponent extends Component {
             onChange={this.handleChange}
             value={this.state.money}
           />
-          <TextField name="description" label="Description" type="text" />
+          <TextField
+            name="description"
+            label="Description"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.description}
+          />
           <div>
             <Button
               variant="contained"
