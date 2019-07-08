@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "@material-ui/core/Button";
 
 export default class Expense extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ export default class Expense extends Component {
     this.state = {
       sharePerPerson: 0,
       result: [],
-      isCalculatePage: false,
+      isStartPage: false,
       isResultPage: true
     };
   }
@@ -49,6 +50,14 @@ export default class Expense extends Component {
     this.setState({ result: result });
   };
 
+  isStartPage = () => {
+    this.setState({
+      ...this.state,
+      isResultPage: false,
+      isStartPage: true
+    });
+  };
+
   render() {
     let statementList = this.state.result.map((statement, index) => (
       <li key={index}>{statement}</li>
@@ -59,6 +68,7 @@ export default class Expense extends Component {
         <p>Each person's share is {this.state.sharePerPerson} euros.</p>
         <p>Therefore:</p>
         <ul style={{ listStyleType: "none" }}>{statementList}</ul>
+        <Button onClick={this.isStartPage}>Back to start page</Button>
       </div>
     );
   }
