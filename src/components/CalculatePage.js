@@ -30,7 +30,8 @@ export default class CalculatePage extends Component {
   isResultPage = () => {
     this.setState({
       ...this.state,
-      isResultPage: true
+      isResultPage: true,
+      isCalculatePage: false
     });
   };
 

@@ -5,7 +5,9 @@ export default class Expense extends Component {
     super(props);
     this.state = {
       sharePerPerson: 0,
-      result: []
+      result: [],
+      isCalculatePage: false,
+      isResultPage: true
     };
   }
 
