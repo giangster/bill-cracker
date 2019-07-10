@@ -21,6 +21,7 @@ export default class CalculatePage extends Component {
   componentDidMount() {
     this.setState({ isCalculatePage: this.props.isCalculatePage });
   }
+
   addInputComponent = () => {
     this.state.data.length < this.state.noOfMember
       ? this.setState({
