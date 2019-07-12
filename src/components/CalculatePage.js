@@ -18,10 +18,6 @@ export default class CalculatePage extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({ isCalculatePage: this.props.isCalculatePage });
-  }
-
   addInputComponent = () => {
     this.state.data.length < this.state.noOfMember
       ? this.setState({
@@ -147,13 +143,10 @@ export default class CalculatePage extends Component {
                 message={this.state.message}
               />
             </div>
-            {this.state.isResultPage && (
-              <Expense
-                noOfMember={this.state.noOfMember}
-                data={this.state.data}
-              />
-            )}
           </div>
+        )}
+        {this.state.isResultPage && (
+          <Expense noOfMember={this.state.noOfMember} data={this.state.data} />
         )}
       </div>
     );
