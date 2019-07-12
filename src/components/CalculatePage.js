@@ -10,8 +10,6 @@ export default class CalculatePage extends Component {
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isStartPage: false,
-      isCalculatePage: true,
       isResultPage: false,
       noOfMember: 0,
       data: []
