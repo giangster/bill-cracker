@@ -28,9 +28,12 @@ export default class CalculatePage extends Component {
   isResultPage = () => {
     this.setState({
       ...this.state,
-      isResultPage: true,
-      isCalculatePage: false
+      isResultPage: true
     });
+  };
+
+  isNotCalculatePage = () => {
+    this.setState({ ...this.state, isCalculatePage: false });
   };
 
   handleInput = object => {
