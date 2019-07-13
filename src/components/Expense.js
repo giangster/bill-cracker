@@ -14,6 +14,7 @@ export default class Expense extends Component {
 
   //Algorithm to calculate the share for each personttf
   componentDidMount = () => {
+    this.props.isNotCalculatePage();
     var dataTemp = this.props.data;
     console.log(dataTemp);
     dataTemp.sort(function(participant1, participant2) {
