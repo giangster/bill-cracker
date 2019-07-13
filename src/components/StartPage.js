@@ -29,6 +29,10 @@ export default class StartPage extends Component {
         });
   };
 
+  isNotCalculatePage = () => {
+    this.setState({ ...this.state, isCalculatePage: false });
+  };
+
   isStartPage = () => {
     this.setState({
       ...this.state,
@@ -108,6 +112,7 @@ export default class StartPage extends Component {
           <div>
             <CalculatePage
               isCalculatePage={this.state.isCalculatePage}
+              isNotCalculatePage={this.isNotCalculatePage}
               isStartPage={this.isStartPage}
               nameOfTrip={this.state.nameOfTrip}
             />

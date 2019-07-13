@@ -33,7 +33,7 @@ export default class CalculatePage extends Component {
   };
 
   isNotCalculatePage = () => {
-    this.setState({ ...this.state, isCalculatePage: false });
+    this.props.isNotCalculatePage();
   };
 
   handleInput = object => {
