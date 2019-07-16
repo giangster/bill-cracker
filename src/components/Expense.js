@@ -63,22 +63,25 @@ export default class Expense extends Component {
     let statementList = this.state.result.map((statement, index) => (
       <li key={index}>{statement}</li>
     ));
-    const columns = [
-      { Header: "Name", accessor: "participant" },
-      { Header: "Money", accessor: "money" }
-    ];
+    let data = this.props.data.map((data, index) => (
+      <div
+        style={{
+          display: "block",
+          margin: 10,
+          padding: 20,
+          backgroundImage:
+            "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)",
+          borderRadius: 2,
+          color: "white"
+        }}
+      >
+        {data.participant} {data.money}
+      </div>
+    ));
 
     return (
-      <div>
-        <div>
-          <ReactTable
-            data={this.props.data}
-            columns={columns}
-            sortable={true}
-            filterable={true}
-            defaultFilterMethod={this.filterMethod}
-          />
-        </div>
+      <div style={{ display: "inline-block" }}>
+        <div style={{ margin: 0 }}>{data}</div>
         <div>
           <p>Here's the calculation:</p>
           <p>Each person's share is {this.state.sharePerPerson} euros.</p>
