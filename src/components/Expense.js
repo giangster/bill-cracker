@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 export default class Expense extends Component {
   constructor(props) {
@@ -61,10 +63,22 @@ export default class Expense extends Component {
     let statementList = this.state.result.map((statement, index) => (
       <li key={index}>{statement}</li>
     ));
-    let information = this.props.data;
+    const columns = [
+      { Header: "Name", accessor: "participant" },
+      { Header: "Money", accessor: "money" }
+    ];
+
     return (
       <div>
-        <div />
+        <div>
+          <ReactTable
+            data={this.props.data}
+            columns={columns}
+            sortable={true}
+            filterable={true}
+            defaultFilterMethod={this.filterMethod}
+          />
+        </div>
         <div>
           <p>Here's the calculation:</p>
           <p>Each person's share is {this.state.sharePerPerson} euros.</p>
