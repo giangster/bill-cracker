@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 export default class Expense extends Component {
@@ -67,38 +66,57 @@ export default class Expense extends Component {
       <div
         style={{
           display: "block",
+          width: 200,
+          borderStyle: "solid",
+          borderColor: "lightGrey",
+          borderRadius: 3,
+          borderWidth: 1,
           margin: 10,
-          padding: 20,
-          backgroundImage:
-            "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)",
-          borderRadius: 2,
-          color: "white"
+          padding: 5
         }}
       >
-        {data.participant} {data.money}
+        <div>
+          {data.participant} pays {data.money} euros
+        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)",
+            margin: 7
+          }}
+        >
+          Edit
+        </Button>
       </div>
     ));
 
     return (
       <div style={{ display: "inline-block" }}>
-        <div style={{ margin: 0 }}>{data}</div>
-        <div>
-          <p>Here's the calculation:</p>
-          <p>Each person's share is {this.state.sharePerPerson} euros.</p>
-          <p>Therefore:</p>
-          <ul style={{ listStyleType: "none" }}>{statementList}</ul>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
-            }}
-            onClick={this.isStartPage}
-          >
-            Back to start page
-          </Button>
+        <div class="split left" style={{ margin: 0 }}>
+          <div class="centered"> {data}</div>
+        </div>
+        <div class="split right">
+          <div class="centered">
+            <p>Here's the calculation:</p>
+            <p>Each person's share is {this.state.sharePerPerson} euros.</p>
+            <p>Therefore:</p>
+            <ul style={{ listStyleType: "none" }}>{statementList}</ul>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+              }}
+              onClick={this.isStartPage}
+            >
+              Back to start page
+            </Button>
+          </div>
         </div>
       </div>
     );
