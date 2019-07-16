@@ -50,6 +50,21 @@ export default class StartPage extends Component {
     this.setState({ messageOpenStatus: false });
   };
 
+  keyPress(e) {
+    if (e.keyCode === 13) {
+      this.state.nameOfTrip !== ""
+        ? this.setState({
+            ...this.state,
+            isStartPage: false,
+            isCalculatePage: true
+          })
+        : this.setState({
+            messageOpenStatus: true,
+            message: "Trip name is required"
+          });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -69,6 +84,7 @@ export default class StartPage extends Component {
               <div>
                 <TextField
                   required
+                  onKeyDown={this.keyPress}
                   onChange={this.handleChange}
                   autoFocus
                   margin="dense"

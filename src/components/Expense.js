@@ -6,13 +6,11 @@ export default class Expense extends Component {
     super(props);
     this.state = {
       sharePerPerson: 0,
-      result: [],
-      isStartPage: false,
-      isResultPage: true
+      result: []
     };
   }
 
-  //Algorithm to calculate the share for each personttf
+  //Algorithm to calculate the share for each person
   componentDidMount = () => {
     this.props.isNotCalculatePage();
     var dataTemp = this.props.data;
@@ -63,13 +61,28 @@ export default class Expense extends Component {
     let statementList = this.state.result.map((statement, index) => (
       <li key={index}>{statement}</li>
     ));
+    let information = this.props.data;
     return (
       <div>
-        <p>Here's the calculation:</p>
-        <p>Each person's share is {this.state.sharePerPerson} euros.</p>
-        <p>Therefore:</p>
-        <ul style={{ listStyleType: "none" }}>{statementList}</ul>
-        <Button onClick={this.isStartPage}>Back to start page</Button>
+        <div />
+        <div>
+          <p>Here's the calculation:</p>
+          <p>Each person's share is {this.state.sharePerPerson} euros.</p>
+          <p>Therefore:</p>
+          <ul style={{ listStyleType: "none" }}>{statementList}</ul>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+            }}
+            onClick={this.isStartPage}
+          >
+            Back to start page
+          </Button>
+        </div>
       </div>
     );
   }
