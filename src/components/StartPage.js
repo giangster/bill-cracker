@@ -50,20 +50,11 @@ export default class StartPage extends Component {
     this.setState({ messageOpenStatus: false });
   };
 
-  keyPress(e) {
+  keyPress = e => {
     if (e.keyCode === 13) {
-      this.state.nameOfTrip !== ""
-        ? this.setState({
-            ...this.state,
-            isStartPage: false,
-            isCalculatePage: true
-          })
-        : this.setState({
-            messageOpenStatus: true,
-            message: "Trip name is required"
-          });
+      this.isCalculatePage();
     }
-  }
+  };
 
   render() {
     return (
