@@ -57,21 +57,21 @@ export default class StartPage extends Component {
   };
 
   render() {
+    const divStyle = {
+      margin: "auto",
+      width: "20%",
+      borderWidth: 0.5,
+      borderStyle: "outset",
+      borderRadius: "5%",
+      backgroundColor: "white",
+      paddingBottom: 15
+    };
+
     return (
       <div>
         {this.state.isStartPage && (
           <div style={{ height: 400 }}>
-            <div
-              style={{
-                margin: "auto",
-                width: "20%",
-                borderWidth: 0.5,
-                borderStyle: "outset",
-                borderRadius: "5%",
-                backgroundColor: "white",
-                paddingBottom: 15
-              }}
-            >
+            <div style={divStyle}>
               <div>
                 <TextField
                   required

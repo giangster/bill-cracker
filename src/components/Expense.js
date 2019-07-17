@@ -62,19 +62,19 @@ export default class Expense extends Component {
     let statementList = this.state.result.map((statement, index) => (
       <li key={index}>{statement}</li>
     ));
+    const divStyle = {
+      display: "block",
+      width: 200,
+      borderStyle: "solid",
+      borderColor: "lightGrey",
+      borderRadius: 3,
+      borderWidth: 1,
+      margin: 20,
+      padding: 5
+    };
+
     let data = this.props.data.map((data, index) => (
-      <div
-        style={{
-          display: "block",
-          width: 200,
-          borderStyle: "solid",
-          borderColor: "lightGrey",
-          borderRadius: 3,
-          borderWidth: 1,
-          margin: 10,
-          padding: 5
-        }}
-      >
+      <div style={divStyle}>
         <div style={{ fontSize: 20 }}>
           {data.participant} pays {data.money} euros
         </div>
@@ -99,7 +99,7 @@ export default class Expense extends Component {
           <div class="centered"> {data}</div>
         </div>
         <div class="split right">
-          <div>
+          <div class="centered">
             <strong style={{ fontSize: 30 }}>Here's the calculation:</strong>
             <p style={{ fontSize: 20 }}>
               Each person's share is {this.state.sharePerPerson} euros.
