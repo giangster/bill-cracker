@@ -26,7 +26,7 @@ export default class CalculatePage extends Component {
   };
 
   isResultPage = () => {
-    this.state.noOfMember <= 1
+    this.state.noOfMember > 1
       ? this.setState({
           ...this.state,
           isResultPage: true
@@ -56,7 +56,6 @@ export default class CalculatePage extends Component {
 
   clearState = () => {
     this.props.isStartPage();
-    console.log(this.state.data);
     this.setState({ data: [], noOfMember: 0, isResultPage: false });
   };
 
