@@ -75,7 +75,7 @@ export default class Expense extends Component {
           padding: 5
         }}
       >
-        <div>
+        <div style={{ fontSize: 20 }}>
           {data.participant} pays {data.money} euros
         </div>
         <Button
@@ -99,11 +99,15 @@ export default class Expense extends Component {
           <div class="centered"> {data}</div>
         </div>
         <div class="split right">
-          <div class="centered">
-            <p>Here's the calculation:</p>
-            <p>Each person's share is {this.state.sharePerPerson} euros.</p>
-            <p>Therefore:</p>
-            <ul style={{ listStyleType: "none" }}>{statementList}</ul>
+          <div>
+            <strong style={{ fontSize: 30 }}>Here's the calculation:</strong>
+            <p style={{ fontSize: 20 }}>
+              Each person's share is {this.state.sharePerPerson} euros.
+            </p>
+            <p style={{ fontSize: 20 }}>Therefore:</p>
+            <ul style={{ listStyleType: "none", fontSize: 20 }}>
+              {statementList}
+            </ul>
             <Button
               type="submit"
               variant="contained"

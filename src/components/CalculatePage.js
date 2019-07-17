@@ -26,10 +26,15 @@ export default class CalculatePage extends Component {
   };
 
   isResultPage = () => {
-    this.setState({
-      ...this.state,
-      isResultPage: true
-    });
+    this.state.noOfMember <= 1
+      ? this.setState({
+          ...this.state,
+          isResultPage: true
+        })
+      : this.setState({
+          messageOpenStatus: true,
+          message: "There has to be at least two participant"
+        });
   };
 
   isNotCalculatePage = () => {
@@ -43,7 +48,6 @@ export default class CalculatePage extends Component {
     this.setState({
       data: dataTemp
     });
-    console.log(this.state.data);
   };
 
   handleClose = () => {
