@@ -3,26 +3,26 @@ import Button from "@material-ui/core/Button";
 import Expense from "./Expense";
 import InputComponent from "./InputComponent";
 import Snackbar from "@material-ui/core/Snackbar";
+import { addParticipant } from "../actions/index";
+import { connect } from "react-redux";
 
-export default class CalculatePage extends Component {
+class CalculatePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isResultPage: false,
-      noOfMember: 0,
-      data: []
+      isResultPage: false
     };
   }
 
   addInputComponent = () => {
-    this.state.data.length < this.state.noOfMember
+    this.props.data.length < this.props.noOfMember
       ? this.setState({
           messageOpenStatus: true,
           message: 'Please click "Add" before adding new participant'
         })
-      : this.setState({ noOfMember: this.state.noOfMember + 1 });
+      : this.setState({ noOfMember: this.props.noOfMember + 1 });
   };
 
   isResultPage = () => {
@@ -48,6 +48,8 @@ export default class CalculatePage extends Component {
     this.setState({
       data: dataTemp
     });
+
+    addParticipant(object);
   };
 
   handleClose = () => {
@@ -159,3 +161,13 @@ export default class CalculatePage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  noOfMember: state.pecpec.length,
+  data: state.pecpec
+});
+
+export default connect(
+  mapStateToProps,
+  { addParticipant }
+)(CalculatePage);
