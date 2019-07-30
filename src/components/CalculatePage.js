@@ -166,7 +166,7 @@ class CalculatePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.noOfMember,
+  noOfMember: state.participanti.noOfMember,
   data: state.participanti
 });
 
