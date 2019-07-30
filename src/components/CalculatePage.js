@@ -16,20 +16,20 @@ class CalculatePage extends Component {
     };
   }
 
-  // addInputComponent = () => {
-  //   console.log(this.props, this.props.data, this.props.noOfMember);
-  //   // this.props.data.length < this.props.noOfMember
-  //   //   ? this.setState({
-  //   //       messageOpenStatus: true,
-  //   //       message: 'Please click "Add" before adding new participant'
-  //   //     })
-  //   //   : this.setState({ noOfMember: this.props.noOfMember + 1 });
+  addInputComponent = () => {
+    console.log(this.props, this.props.data, this.props.noOfMember);
+    // this.props.data.length < this.props.noOfMember
+    //   ? this.setState({
+    //       messageOpenStatus: true,
+    //       message: 'Please click "Add" before adding new participant'
+    //     })
+    //   : this.setState({ noOfMember: this.props.noOfMember + 1 });
 
-  //   this.props.addParticipant();
-  // };
+    this.props.addParticipant();
+  };
 
   isResultPage = () => {
-    this.state.noOfMember > 1
+    this.props.noOfMember > 1
       ? this.setState({
           ...this.state,
           isResultPage: true
@@ -111,7 +111,7 @@ class CalculatePage extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.props.addParticipant}
+              onClick={this.addInputComponent}
             >
               Add participant
             </Button>
@@ -155,7 +155,7 @@ class CalculatePage extends Component {
         )}
         {this.state.isResultPage && (
           <Expense
-            noOfMember={this.state.noOfMember}
+            noOfMember={this.props.noOfMember}
             data={this.state.data}
             isNotCalculatePage={this.isNotCalculatePage}
           />
