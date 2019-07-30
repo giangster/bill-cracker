@@ -118,3 +118,13 @@ export default class InputComponent extends Component {
     );
   }
 }
+
+// const mapStateToProps = state => ({
+//   noOfMember: state.pecpec.length,
+//   data: state.pecpec
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   { addParticipant }
+// )(CalculatePage);

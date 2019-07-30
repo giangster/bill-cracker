@@ -16,14 +16,17 @@ class CalculatePage extends Component {
     };
   }
 
-  addInputComponent = () => {
-    this.props.data.length < this.props.noOfMember
-      ? this.setState({
-          messageOpenStatus: true,
-          message: 'Please click "Add" before adding new participant'
-        })
-      : this.setState({ noOfMember: this.props.noOfMember + 1 });
-  };
+  // addInputComponent = () => {
+  //   console.log(this.props, this.props.data, this.props.noOfMember);
+  //   // this.props.data.length < this.props.noOfMember
+  //   //   ? this.setState({
+  //   //       messageOpenStatus: true,
+  //   //       message: 'Please click "Add" before adding new participant'
+  //   //     })
+  //   //   : this.setState({ noOfMember: this.props.noOfMember + 1 });
+
+  //   this.props.addParticipant();
+  // };
 
   isResultPage = () => {
     this.state.noOfMember > 1
@@ -63,7 +66,7 @@ class CalculatePage extends Component {
 
   render() {
     var members = [];
-    for (var i = 0; i < this.state.noOfMember; i++) {
+    for (var i = 0; i < this.props.noOfMember; i++) {
       members.push(
         <div
           key={i}
@@ -108,7 +111,7 @@ class CalculatePage extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.addInputComponent}
+              onClick={this.props.addParticipant}
             >
               Add participant
             </Button>
@@ -163,11 +166,17 @@ class CalculatePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.pecpec.length,
-  data: state.pecpec
+  noOfMember: state.noOfMember,
+  data: state.participanti
+});
+
+const mapDispatchToProps = dispatch => ({
+  addParticipant: () => {
+    dispatch(addParticipant());
+  }
 });
 
 export default connect(
   mapStateToProps,
-  { addParticipant }
+  mapDispatchToProps
 )(CalculatePage);
