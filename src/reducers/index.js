@@ -1,4 +1,5 @@
 import { ADD_PARTICIPANT } from "../actions/types";
+import { DATA_COLLECT } from "../actions/types";
 import { combineReducers } from "redux";
 
 const initialState = {
@@ -13,6 +14,11 @@ function participantReducer(state = initialState, action) {
       return {
         ...state,
         noOfMember: newNoOfMember
+      };
+    case DATA_COLLECT:
+      return {
+        ...state,
+        participants: [...state.participants, action.payload]
       };
     default:
       return state;
