@@ -6,7 +6,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { addParticipant, collectData } from "../actions/index";
 import { connect } from "react-redux";
 
-export default class InputComponent extends Component {
+class InputComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +33,7 @@ export default class InputComponent extends Component {
       return;
     }
     //Ensuring there is no duplicating participant
-    for (var i = 0; i < this.props.participants.length; i++) {
+    for (var i = 0; i < this.props.data.length; i++) {
       if (this.state.participant === this.props.data[i].participant) {
         this.setState({
           messageOpenStatus: true,
@@ -122,12 +122,9 @@ export default class InputComponent extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   noOfMember: state.pecpec.length,
-//   data: state.pecpec
-// });
+const mapStateToProps = state => ({
+  noOfMember: state.participanti.noOfMember,
+  data: state.participanti.participants
+});
 
-// export default connect(
-//   mapStateToProps,
-//   { addParticipant }
-// )(CalculatePage);
+export default connect(mapStateToProps)(InputComponent);

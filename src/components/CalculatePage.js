@@ -45,7 +45,7 @@ class CalculatePage extends Component {
   };
 
   handleInput = object => {
-    collectData(object);
+    this.props.collectData(object);
   };
 
   handleClose = () => {
