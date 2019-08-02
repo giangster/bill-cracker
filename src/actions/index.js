@@ -7,3 +7,7 @@ export const addParticipant = () => {
 export const collectData = object => {
   return { type: DATA_COLLECT, payload: object };
 };
+
+export const calculateExpense = data => {
+  return { type: EXPENSE_CAL, payload: data };
+};

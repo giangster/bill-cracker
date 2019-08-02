@@ -4,7 +4,9 @@ import { combineReducers } from "redux";
 
 const initialState = {
   participants: [],
-  noOfMember: 0
+  noOfMember: 0,
+  sharePerPerson: 0,
+  result: []
 };
 
 function participantReducer(state = initialState, action) {
