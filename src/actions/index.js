@@ -1,4 +1,4 @@
-import { ADD_PARTICIPANT, DATA_COLLECT } from "./types";
+import { ADD_PARTICIPANT, DATA_COLLECT, EXPENSE_CAL } from "./types";
 
 export const addParticipant = () => {
   return { type: ADD_PARTICIPANT, payload: 1 };
