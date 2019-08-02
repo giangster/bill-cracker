@@ -160,12 +160,15 @@ class CalculatePage extends Component {
 
 const mapStateToProps = state => ({
   noOfMember: state.participanti.noOfMember,
-  data: state.participanti
+  data: state.participanti.participants
 });
 
 const mapDispatchToProps = dispatch => ({
   addParticipant: () => {
     dispatch(addParticipant());
+  },
+  collectData: object => {
+    dispatch(collectData(object));
   }
 });
 
