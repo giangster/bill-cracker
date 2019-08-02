@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import Expense from "./Expense";
 import InputComponent from "./InputComponent";
 import Snackbar from "@material-ui/core/Snackbar";
-import { addParticipant } from "../actions/index";
+import { addParticipant, collectData } from "../actions/index";
 import { connect } from "react-redux";
 
 class CalculatePage extends Component {
@@ -45,14 +45,7 @@ class CalculatePage extends Component {
   };
 
   handleInput = object => {
-    var dataTemp = this.state.data;
-    dataTemp.push(object);
-
-    this.setState({
-      data: dataTemp
-    });
-
-    addParticipant(object);
+    collectData(object);
   };
 
   handleClose = () => {
