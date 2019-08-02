@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
+import { addParticipant, collectData } from "../actions/index";
+import { connect } from "react-redux";
 
 export default class InputComponent extends Component {
   constructor(props) {
@@ -31,7 +33,7 @@ export default class InputComponent extends Component {
       return;
     }
     //Ensuring there is no duplicating participant
-    for (var i = 0; i < this.props.data.length; i++) {
+    for (var i = 0; i < this.props.participants.length; i++) {
       if (this.state.participant === this.props.data[i].participant) {
         this.setState({
           messageOpenStatus: true,
