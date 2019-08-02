@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import "react-table/react-table.css";
+import { connect } from "react-redux";
 
-export default class Expense extends Component {
+class Expense extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +41,9 @@ export default class Expense extends Component {
     let debt;
     let result = [];
     while (i < j) {
-      debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j]));
+      debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(
+        2
+      );
       result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
 
       balanceGeneral[i] += debt;
@@ -74,8 +77,8 @@ export default class Expense extends Component {
     };
 
     let data = this.props.data.map((data, index) => (
-      <div style={divStyle}>
-        <div style={{ fontSize: 20 }}>
+      <div style={divStyle} key={index}>
+        <div style={{ fontSize: 20 }} key={index}>
           {data.participant} pays {data.money} euros
         </div>
         <Button
@@ -95,11 +98,11 @@ export default class Expense extends Component {
 
     return (
       <div style={{ display: "inline-block" }}>
-        <div class="split left" style={{ margin: 0 }}>
-          <div class="centered"> {data}</div>
+        <div className="split left" style={{ margin: 0 }}>
+          <div className="centered"> {data}</div>
         </div>
-        <div class="split right">
-          <div class="centered">
+        <div className="split right">
+          <div className="centered">
             <strong style={{ fontSize: 30 }}>Here's the calculation:</strong>
             <p style={{ fontSize: 20 }}>
               Each person's share is {this.state.sharePerPerson} euros.
@@ -126,3 +129,10 @@ export default class Expense extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  noOfMember: state.participanti.noOfMember,
+  data: state.participanti.participants
+});
+
+export default connect(mapStateToProps)(Expense);

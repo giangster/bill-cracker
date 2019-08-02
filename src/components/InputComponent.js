@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
-import { addParticipant, collectData } from "../actions/index";
 import { connect } from "react-redux";
 
 class InputComponent extends Component {
