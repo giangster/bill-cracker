@@ -40,6 +40,7 @@ export default class InputComponent extends Component {
         return;
       }
     }
+
     let data = {
       participant: this.state.participant,
       money: this.state.money,
