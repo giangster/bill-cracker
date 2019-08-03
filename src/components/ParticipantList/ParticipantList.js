@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import Expense from "../Expense/Expense";
+import Result from "../Result/Result";
 import ParticipantItem from "../ParticipantItem/ParticipantItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import { addParticipant, collectData } from "../../actions/index";
@@ -147,7 +147,7 @@ class ParticipantList extends Component {
           </div>
         )}
         {this.state.isResultPage && (
-          <Expense
+          <Result
             noOfMember={this.props.noOfMember}
             data={this.state.data}
             isNotParticipantList={this.isNotParticipantList}

@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import "react-table/react-table.css";
 import { connect } from "react-redux";
 
-class Expense extends Component {
+class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -135,4 +135,4 @@ const mapStateToProps = state => ({
   data: state.participanti.participants
 });
 
-export default connect(mapStateToProps)(Expense);
+export default connect(mapStateToProps)(Result);
