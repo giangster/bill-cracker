@@ -1,4 +1,4 @@
-import { ADD_PARTICIPANT, REMOVE_ALL_PARTICIPANTS } from "../../actions/types";
+import { ADD_PARTICIPANT, REMOVE_ALL_PARTICIPANTS } from "../actions/types";
 
 const initialState = {
   participants: []
