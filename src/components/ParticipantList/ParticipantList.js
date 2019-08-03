@@ -45,7 +45,6 @@ class ParticipantList extends Component {
   };
 
   clearState = () => {
-    this.props.isStart();
     this.props.removeAllParticipants();
     this.setState({ isResultPage: false });
   };
