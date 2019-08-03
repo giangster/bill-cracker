@@ -16,20 +16,8 @@ class ParticipantList extends Component {
     };
   }
 
-  addParticipantItem = () => {
-    console.log(this.props, this.props.data, this.props.noOfMember);
-    // this.props.data.length < this.props.noOfMember
-    //   ? this.setState({
-    //       messageOpenStatus: true,
-    //       message: 'Please click "Add" before adding new participant'
-    //     })
-    //   : this.setState({ noOfMember: this.props.noOfMember + 1 });
-
-    this.props.addParticipant();
-  };
-
   isResultPage = () => {
-    this.props.noOfMember > 1
+    this.props.participants.length > 1
       ? this.setState({
           ...this.state,
           isResultPage: true
@@ -59,7 +47,7 @@ class ParticipantList extends Component {
 
   render() {
     var members = [];
-    for (var i = 0; i < this.props.noOfMember; i++) {
+    for (var i = 0; i < this.props.participants.length; i++) {
       members.push(
         <div
           key={i}
@@ -104,7 +92,7 @@ class ParticipantList extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.addParticipantItem}
+              onClick={this.props.addParticipant}
             >
               Add participant
             </Button>
@@ -148,7 +136,7 @@ class ParticipantList extends Component {
         )}
         {this.state.isResultPage && (
           <Result
-            noOfMember={this.props.noOfMember}
+            noOfMember={this.props.participants.length}
             data={this.state.data}
             isNotParticipantList={this.isNotParticipantList}
           />
@@ -159,8 +147,7 @@ class ParticipantList extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participantList.noOfMember,
-  data: state.participantList.participants
+  participants: state.participantList.participants
 });
 
 const mapDispatchToProps = dispatch => ({
