@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import StartPage from "../StartPage";
+import StartPage from "../StartPage/StartPage";
 import { Provider } from "react-redux";
 import store from "../../store";
 
