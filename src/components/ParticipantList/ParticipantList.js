@@ -6,7 +6,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { addParticipant, collectData } from "../../actions/index";
 import { connect } from "react-redux";
 
-class CalculatePage extends Component {
+class ParticipantList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,8 +40,8 @@ class CalculatePage extends Component {
         });
   };
 
-  isNotCalculatePage = () => {
-    this.props.isNotCalculatePage();
+  isNotParticipantList = () => {
+    this.props.isNotParticipantList();
   };
 
   handleInput = object => {
@@ -86,7 +86,7 @@ class CalculatePage extends Component {
     }
     return (
       <div>
-        {this.props.isCalculatePage && (
+        {this.props.isParticipantList && (
           <div>
             <p>
               <strong>{this.props.nameOfTrip}</strong>
@@ -150,7 +150,7 @@ class CalculatePage extends Component {
           <Expense
             noOfMember={this.props.noOfMember}
             data={this.state.data}
-            isNotCalculatePage={this.isNotCalculatePage}
+            isNotParticipantList={this.isNotParticipantList}
           />
         )}
       </div>
@@ -175,4 +175,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CalculatePage);
+)(ParticipantList);

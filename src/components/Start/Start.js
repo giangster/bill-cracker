@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import CalculatePage from "../Calculate/CalculatePage";
+import ParticipantList from "../ParticipantList/ParticipantList";
 import Snackbar from "@material-ui/core/Snackbar";
 
 export default class Start extends Component {
@@ -11,17 +11,17 @@ export default class Start extends Component {
       message: "",
       messageOpenStatus: false,
       isStart: true,
-      isCalculatePage: false,
+      isParticipantList: false,
       nameOfTrip: ""
     };
   }
 
-  isCalculatePage = () => {
+  isParticipantList = () => {
     this.state.nameOfTrip !== ""
       ? this.setState({
           ...this.state,
           isStart: false,
-          isCalculatePage: true
+          isParticipantList: true
         })
       : this.setState({
           messageOpenStatus: true,
@@ -29,15 +29,15 @@ export default class Start extends Component {
         });
   };
 
-  isNotCalculatePage = () => {
-    this.setState({ ...this.state, isCalculatePage: false });
+  isNotParticipantList = () => {
+    this.setState({ ...this.state, isParticipantList: false });
   };
 
   isStart = () => {
     this.setState({
       ...this.state,
       isStart: true,
-      isCalculatePage: false,
+      isParticipantList: false,
       nameOfTrip: undefined
     });
   };
@@ -52,7 +52,7 @@ export default class Start extends Component {
 
   keyPress = e => {
     if (e.keyCode === 13) {
-      this.isCalculatePage();
+      this.isParticipantList();
     }
   };
 
@@ -91,7 +91,7 @@ export default class Start extends Component {
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick={this.isCalculatePage}
+                onClick={this.isParticipantList}
                 style={{
                   backgroundImage:
                     "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
@@ -115,11 +115,11 @@ export default class Start extends Component {
             </div>
           </div>
         )}
-        {this.isCalculatePage && (
+        {this.isParticipantList && (
           <div>
-            <CalculatePage
-              isCalculatePage={this.state.isCalculatePage}
-              isNotCalculatePage={this.isNotCalculatePage}
+            <ParticipantList
+              isParticipantList={this.state.isParticipantList}
+              isNotParticipantList={this.isNotParticipantList}
               isStart={this.isStart}
               nameOfTrip={this.state.nameOfTrip}
             />
