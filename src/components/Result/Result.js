@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import "react-table/react-table.css";
 import { connect } from "react-redux";
 
-class Expense extends Component {
+class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ class Expense extends Component {
 
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
-    this.props.isNotCalculatePage();
+    this.props.isNotParticipantList();
     var dataTemp = this.props.data;
     console.log(dataTemp);
     dataTemp.sort(function(participant1, participant2) {
@@ -53,11 +53,11 @@ class Expense extends Component {
     this.setState({ result: result });
   };
 
-  isStartPage = () => {
+  isStart = () => {
     this.setState({
       ...this.state,
       isResultPage: false,
-      isStartPage: true
+      isStart: true
     });
   };
 
@@ -119,7 +119,7 @@ class Expense extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.isStartPage}
+              onClick={this.isStart}
             >
               Back to start page
             </Button>
@@ -131,8 +131,8 @@ class Expense extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participanti.noOfMember,
-  data: state.participanti.participants
+  noOfMember: state.participantList.noOfMember,
+  data: state.participantList.participants
 });
 
-export default connect(mapStateToProps)(Expense);
+export default connect(mapStateToProps)(Result);

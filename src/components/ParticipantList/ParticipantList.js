@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import Expense from "./Expense";
-import InputComponent from "./InputComponent";
+import Result from "../Result/Result";
+import ParticipantItem from "../ParticipantItem/ParticipantItem";
 import Snackbar from "@material-ui/core/Snackbar";
-import { addParticipant, collectData } from "../actions/index";
+import { collectData } from "../../actions/index";
+import {
+  addParticipant,
+  removeAllParticipants
+} from "../../actions/participantList";
 import { connect } from "react-redux";
 
-class CalculatePage extends Component {
+class ParticipantList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,20 +20,8 @@ class CalculatePage extends Component {
     };
   }
 
-  addInputComponent = () => {
-    console.log(this.props, this.props.data, this.props.noOfMember);
-    // this.props.data.length < this.props.noOfMember
-    //   ? this.setState({
-    //       messageOpenStatus: true,
-    //       message: 'Please click "Add" before adding new participant'
-    //     })
-    //   : this.setState({ noOfMember: this.props.noOfMember + 1 });
-
-    this.props.addParticipant();
-  };
-
   isResultPage = () => {
-    this.props.noOfMember > 1
+    this.props.participants.length > 1
       ? this.setState({
           ...this.state,
           isResultPage: true
@@ -40,8 +32,8 @@ class CalculatePage extends Component {
         });
   };
 
-  isNotCalculatePage = () => {
-    this.props.isNotCalculatePage();
+  isNotParticipantList = () => {
+    this.props.isNotParticipantList();
   };
 
   handleInput = object => {
@@ -53,13 +45,14 @@ class CalculatePage extends Component {
   };
 
   clearState = () => {
-    this.props.isStartPage();
-    this.setState({ data: [], noOfMember: 0, isResultPage: false });
+    this.props.isStart();
+    this.props.removeAllParticipants();
+    this.setState({ isResultPage: false });
   };
 
   render() {
     var members = [];
-    for (var i = 0; i < this.props.noOfMember; i++) {
+    for (var i = 0; i < this.props.participants.length; i++) {
       members.push(
         <div
           key={i}
@@ -76,7 +69,7 @@ class CalculatePage extends Component {
         >
           <strong>Participant {i + 1}</strong>
 
-          <InputComponent
+          <ParticipantItem
             key={i}
             handleInput={this.handleInput}
             data={this.state.data}
@@ -86,7 +79,7 @@ class CalculatePage extends Component {
     }
     return (
       <div>
-        {this.props.isCalculatePage && (
+        {this.props.isParticipantList && (
           <div>
             <p>
               <strong>{this.props.nameOfTrip}</strong>
@@ -104,7 +97,7 @@ class CalculatePage extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.addInputComponent}
+              onClick={this.props.addParticipant}
             >
               Add participant
             </Button>
@@ -147,10 +140,10 @@ class CalculatePage extends Component {
           </div>
         )}
         {this.state.isResultPage && (
-          <Expense
-            noOfMember={this.props.noOfMember}
+          <Result
+            noOfMember={this.props.participants.length}
             data={this.state.data}
-            isNotCalculatePage={this.isNotCalculatePage}
+            isNotParticipantList={this.isNotParticipantList}
           />
         )}
       </div>
@@ -159,13 +152,15 @@ class CalculatePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participanti.noOfMember,
-  data: state.participanti.participants
+  participants: state.participantList.participants
 });
 
 const mapDispatchToProps = dispatch => ({
   addParticipant: () => {
     dispatch(addParticipant());
+  },
+  removeAllParticipants: () => {
+    dispatch(removeAllParticipants());
   },
   collectData: object => {
     dispatch(collectData(object));
@@ -175,4 +170,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CalculatePage);
+)(ParticipantList);

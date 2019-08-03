@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import CalculatePage from "./CalculatePage";
+import ParticipantList from "../ParticipantList/ParticipantList";
 import Snackbar from "@material-ui/core/Snackbar";
 
-export default class StartPage extends Component {
+export default class Start extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isStartPage: true,
-      isCalculatePage: false,
+      isStart: true,
+      isParticipantList: false,
       nameOfTrip: ""
     };
   }
 
-  isCalculatePage = () => {
+  isParticipantList = () => {
     this.state.nameOfTrip !== ""
       ? this.setState({
           ...this.state,
-          isStartPage: false,
-          isCalculatePage: true
+          isStart: false,
+          isParticipantList: true
         })
       : this.setState({
           messageOpenStatus: true,
@@ -29,15 +29,15 @@ export default class StartPage extends Component {
         });
   };
 
-  isNotCalculatePage = () => {
-    this.setState({ ...this.state, isCalculatePage: false });
+  isNotParticipantList = () => {
+    this.setState({ ...this.state, isParticipantList: false });
   };
 
-  isStartPage = () => {
+  isStart = () => {
     this.setState({
       ...this.state,
-      isStartPage: true,
-      isCalculatePage: false,
+      isStart: true,
+      isParticipantList: false,
       nameOfTrip: undefined
     });
   };
@@ -52,7 +52,7 @@ export default class StartPage extends Component {
 
   keyPress = e => {
     if (e.keyCode === 13) {
-      this.isCalculatePage();
+      this.isParticipantList();
     }
   };
 
@@ -69,7 +69,7 @@ export default class StartPage extends Component {
 
     return (
       <div>
-        {this.state.isStartPage && (
+        {this.state.isStart && (
           <div style={{ height: 400 }}>
             <div style={divStyle}>
               <div>
@@ -91,7 +91,7 @@ export default class StartPage extends Component {
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick={this.isCalculatePage}
+                onClick={this.isParticipantList}
                 style={{
                   backgroundImage:
                     "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
@@ -115,12 +115,12 @@ export default class StartPage extends Component {
             </div>
           </div>
         )}
-        {this.isCalculatePage && (
+        {this.isParticipantList && (
           <div>
-            <CalculatePage
-              isCalculatePage={this.state.isCalculatePage}
-              isNotCalculatePage={this.isNotCalculatePage}
-              isStartPage={this.isStartPage}
+            <ParticipantList
+              isParticipantList={this.state.isParticipantList}
+              isNotParticipantList={this.isNotParticipantList}
+              isStart={this.isStart}
               nameOfTrip={this.state.nameOfTrip}
             />
           </div>

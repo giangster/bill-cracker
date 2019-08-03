@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import { connect } from "react-redux";
 
-class InputComponent extends Component {
+class ParticipantItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -122,8 +122,8 @@ class InputComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participanti.noOfMember,
-  data: state.participanti.participants
+  noOfMember: state.participantList.noOfMember,
+  data: state.participantList.participants
 });
 
-export default connect(mapStateToProps)(InputComponent);
+export default connect(mapStateToProps)(ParticipantItem);
