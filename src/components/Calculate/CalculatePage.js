@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Expense from "../Expense";
-import InputComponent from "../InputComponent";
+import InputComponent from "../InputComponent/InputComponent";
 import Snackbar from "@material-ui/core/Snackbar";
 import { addParticipant, collectData } from "../../actions/index";
 import { connect } from "react-redux";
