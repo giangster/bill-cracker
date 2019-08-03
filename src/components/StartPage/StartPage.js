@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import CalculatePage from "../CalculatePage";
+import CalculatePage from "../Calculate/CalculatePage";
 import Snackbar from "@material-ui/core/Snackbar";
 
 export default class StartPage extends Component {
