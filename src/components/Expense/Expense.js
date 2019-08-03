@@ -53,11 +53,11 @@ class Expense extends Component {
     this.setState({ result: result });
   };
 
-  isStartPage = () => {
+  isStart = () => {
     this.setState({
       ...this.state,
       isResultPage: false,
-      isStartPage: true
+      isStart: true
     });
   };
 
@@ -119,7 +119,7 @@ class Expense extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.isStartPage}
+              onClick={this.isStart}
             >
               Back to start page
             </Button>

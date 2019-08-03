@@ -53,7 +53,7 @@ class CalculatePage extends Component {
   };
 
   clearState = () => {
-    this.props.isStartPage();
+    this.props.isStart();
     this.setState({ data: [], noOfMember: 0, isResultPage: false });
   };
 

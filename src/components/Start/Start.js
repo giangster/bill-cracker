@@ -4,13 +4,13 @@ import Button from "@material-ui/core/Button";
 import CalculatePage from "../Calculate/CalculatePage";
 import Snackbar from "@material-ui/core/Snackbar";
 
-export default class StartPage extends Component {
+export default class Start extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isStartPage: true,
+      isStart: true,
       isCalculatePage: false,
       nameOfTrip: ""
     };
@@ -20,7 +20,7 @@ export default class StartPage extends Component {
     this.state.nameOfTrip !== ""
       ? this.setState({
           ...this.state,
-          isStartPage: false,
+          isStart: false,
           isCalculatePage: true
         })
       : this.setState({
@@ -33,10 +33,10 @@ export default class StartPage extends Component {
     this.setState({ ...this.state, isCalculatePage: false });
   };
 
-  isStartPage = () => {
+  isStart = () => {
     this.setState({
       ...this.state,
-      isStartPage: true,
+      isStart: true,
       isCalculatePage: false,
       nameOfTrip: undefined
     });
@@ -69,7 +69,7 @@ export default class StartPage extends Component {
 
     return (
       <div>
-        {this.state.isStartPage && (
+        {this.state.isStart && (
           <div style={{ height: 400 }}>
             <div style={divStyle}>
               <div>
@@ -120,7 +120,7 @@ export default class StartPage extends Component {
             <CalculatePage
               isCalculatePage={this.state.isCalculatePage}
               isNotCalculatePage={this.isNotCalculatePage}
-              isStartPage={this.isStartPage}
+              isStart={this.isStart}
               nameOfTrip={this.state.nameOfTrip}
             />
           </div>
