@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Expense from "../Expense/Expense";
-import InputComponent from "../InputComponent/InputComponent";
+import ParticipantItem from "../ParticipantItem/ParticipantItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import { addParticipant, collectData } from "../../actions/index";
 import { connect } from "react-redux";
@@ -16,7 +16,7 @@ class ParticipantList extends Component {
     };
   }
 
-  addInputComponent = () => {
+  addParticipantItem = () => {
     console.log(this.props, this.props.data, this.props.noOfMember);
     // this.props.data.length < this.props.noOfMember
     //   ? this.setState({
@@ -76,7 +76,7 @@ class ParticipantList extends Component {
         >
           <strong>Participant {i + 1}</strong>
 
-          <InputComponent
+          <ParticipantItem
             key={i}
             handleInput={this.handleInput}
             data={this.state.data}
@@ -104,7 +104,7 @@ class ParticipantList extends Component {
                 backgroundImage:
                   "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
               }}
-              onClick={this.addInputComponent}
+              onClick={this.addParticipantItem}
             >
               Add participant
             </Button>
