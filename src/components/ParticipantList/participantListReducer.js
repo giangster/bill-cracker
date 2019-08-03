@@ -1,4 +1,4 @@
-import { ADD_PARTICIPANT } from "../../actions/types";
+import { ADD_PARTICIPANT, REMOVE_ALL_PARTICIPANTS } from "../../actions/types";
 
 const initialState = {
   participants: []
@@ -10,6 +10,11 @@ function participantReducer(state = initialState, action) {
       return {
         ...state,
         participants: [...state.participants, {}]
+      };
+    case REMOVE_ALL_PARTICIPANTS:
+      return {
+        ...state,
+        participants: []
       };
     default:
       return state;

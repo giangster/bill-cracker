@@ -3,7 +3,11 @@ import Button from "@material-ui/core/Button";
 import Result from "../Result/Result";
 import ParticipantItem from "../ParticipantItem/ParticipantItem";
 import Snackbar from "@material-ui/core/Snackbar";
-import { addParticipant, collectData } from "../../actions/index";
+import { collectData } from "../../actions/index";
+import {
+  addParticipant,
+  removeAllParticipants
+} from "../../actions/participantList";
 import { connect } from "react-redux";
 
 class ParticipantList extends Component {
@@ -42,7 +46,8 @@ class ParticipantList extends Component {
 
   clearState = () => {
     this.props.isStart();
-    this.setState({ data: [], noOfMember: 0, isResultPage: false });
+    this.props.removeAllParticipants();
+    this.setState({ isResultPage: false });
   };
 
   render() {
@@ -153,6 +158,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addParticipant: () => {
     dispatch(addParticipant());
+  },
+  removeAllParticipants: () => {
+    dispatch(removeAllParticipants());
   },
   collectData: object => {
     dispatch(collectData(object));
