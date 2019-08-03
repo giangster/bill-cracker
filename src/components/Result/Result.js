@@ -131,8 +131,8 @@ class Result extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participanti.noOfMember,
-  data: state.participanti.participants
+  noOfMember: state.participantList.noOfMember,
+  data: state.participantList.participants
 });
 
 export default connect(mapStateToProps)(Result);

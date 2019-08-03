@@ -159,8 +159,8 @@ class ParticipantList extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participanti.noOfMember,
-  data: state.participanti.participants
+  noOfMember: state.participantList.noOfMember,
+  data: state.participantList.participants
 });
 
 const mapDispatchToProps = dispatch => ({
