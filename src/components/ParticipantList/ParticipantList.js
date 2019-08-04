@@ -52,7 +52,7 @@ class ParticipantList extends Component {
 
   render() {
     var members = [];
-    for (var i = 0; i < this.props.participants.length; i++) {
+    for (var i = 0, length = this.props.participants.length; i < length; i++) {
       members.push(
         <div
           key={i}
@@ -140,11 +140,7 @@ class ParticipantList extends Component {
           </div>
         )}
         {this.state.isResultPage && (
-          <Result
-            noOfMember={this.props.participants.length}
-            data={this.state.data}
-            isNotParticipantList={this.isNotParticipantList}
-          />
+          <Result isNotParticipantList={this.isNotParticipantList} />
         )}
       </div>
     );
