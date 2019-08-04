@@ -79,7 +79,7 @@ class Result extends Component {
     let finalResult = this.props.participants.map((participant, index) => (
       <div style={divStyle} key={index}>
         <div style={{ fontSize: 20 }} key={index}>
-          {participant.participant} pays {participant.money} euros
+          {participant.participantName} pays {participant.money} euros
         </div>
         <Button
           type="submit"

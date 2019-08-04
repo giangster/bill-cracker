@@ -32,7 +32,7 @@ class ParticipantItem extends Component {
       return;
     }
     //Ensuring there is no duplicating participant
-    for (var i = 0; i < this.props.participants.length; i++) {
+    for (var i = 0, length = this.props.participants.length; i < length; i++) {
       if (
         this.state.participantName ===
         this.props.participants[i].participantName
