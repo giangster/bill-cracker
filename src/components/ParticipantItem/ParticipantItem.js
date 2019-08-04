@@ -11,7 +11,7 @@ class ParticipantItem extends Component {
     this.state = {
       message: "",
       messageOpenStatus: false,
-      participant: "",
+      participantName: "",
       money: 0,
       description: ""
     };
@@ -24,7 +24,7 @@ class ParticipantItem extends Component {
   handleInput = () => {
     //Early return technique
     //Validating input
-    if (this.state.participant === "" || this.state.money < 0) {
+    if (this.state.participantName === "" || this.state.money < 0) {
       this.setState({
         messageOpenStatus: true,
         message: "Name must not be empty and money must not be less than 0"
@@ -32,8 +32,11 @@ class ParticipantItem extends Component {
       return;
     }
     //Ensuring there is no duplicating participant
-    for (var i = 0; i < this.props.data.length; i++) {
-      if (this.state.participant === this.props.data[i].participant) {
+    for (var i = 0; i < this.props.participants.length; i++) {
+      if (
+        this.state.participantName ===
+        this.props.participants[i].participantName
+      ) {
         this.setState({
           messageOpenStatus: true,
           message: "There can not be two participant with the same name"
@@ -43,7 +46,7 @@ class ParticipantItem extends Component {
     }
 
     let data = {
-      participant: this.state.participant,
+      participantName: this.state.participantName,
       money: this.state.money,
       description: this.state.description
     };
@@ -65,11 +68,11 @@ class ParticipantItem extends Component {
         <FormControl style={{ borderStyle: "solid", borderColor: "blue" }}>
           <TextField
             required
-            name="participant"
-            label="Participant"
+            name="participantName"
+            label="Name"
             type="text"
             onChange={this.handleChange}
-            value={this.state.participant}
+            value={this.state.participantName}
           />
           <TextField
             required
@@ -122,8 +125,7 @@ class ParticipantItem extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participantList.noOfMember,
-  data: state.participantList.participants
+  participants: state.participantList.participants
 });
 
 export default connect(mapStateToProps)(ParticipantItem);

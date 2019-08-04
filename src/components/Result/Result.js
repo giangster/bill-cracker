@@ -15,7 +15,7 @@ class Result extends Component {
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
     this.props.isNotParticipantList();
-    var dataTemp = this.props.data;
+    var dataTemp = this.props.participants;
     console.log(dataTemp);
     dataTemp.sort(function(participant1, participant2) {
       return participant1.money - participant2.money;
@@ -25,7 +25,7 @@ class Result extends Component {
     dataTemp.forEach(function(item) {
       total = total + parseFloat(item.money);
     });
-    var share = (total / this.props.data.length).toFixed(2);
+    var share = (total / this.props.participants.length).toFixed(2);
 
     this.setState({ sharePerPerson: share });
 
@@ -76,10 +76,10 @@ class Result extends Component {
       padding: 5
     };
 
-    let data = this.props.data.map((data, index) => (
+    let finalResult = this.props.participants.map((participant, index) => (
       <div style={divStyle} key={index}>
         <div style={{ fontSize: 20 }} key={index}>
-          {data.participant} pays {data.money} euros
+          {participant.participant} pays {participant.money} euros
         </div>
         <Button
           type="submit"
@@ -99,7 +99,7 @@ class Result extends Component {
     return (
       <div style={{ display: "inline-block" }}>
         <div className="split left" style={{ margin: 0 }}>
-          <div className="centered"> {data}</div>
+          <div className="centered"> {finalResult}</div>
         </div>
         <div className="split right">
           <div className="centered">
@@ -131,8 +131,7 @@ class Result extends Component {
 }
 
 const mapStateToProps = state => ({
-  noOfMember: state.participantList.noOfMember,
-  data: state.participantList.participants
+  participants: state.participantList.participants
 });
 
 export default connect(mapStateToProps)(Result);
