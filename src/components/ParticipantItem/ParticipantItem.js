@@ -45,13 +45,13 @@ class ParticipantItem extends Component {
       }
     }
 
-    let data = {
+    let newParticipant = {
       participantName: this.state.participantName,
       money: this.state.money,
       description: this.state.description
     };
 
-    this.props.handleInput(data);
+    this.props.handleInput(newParticipant);
     this.setState({
       messageOpenStatus: true,
       message: "Data added!"
