@@ -32,7 +32,7 @@ class ParticipantItem extends Component {
       return;
     }
     //Ensuring there is no duplicating participant
-    this.props.participants.forEach(function(participant) {
+    this.props.participants.forEach(participant => {
       if (this.state.participantName === participant.participantName) {
         this.setState({
           messageOpenStatus: true,

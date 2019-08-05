@@ -22,7 +22,7 @@ class Result extends Component {
     });
     var total = 0;
 
-    dataTemp.forEach(function(item) {
+    dataTemp.forEach(item => {
       total = total + parseFloat(item.money);
     });
     var share = (total / this.props.participants.length).toFixed(2);
@@ -31,7 +31,7 @@ class Result extends Component {
 
     var balanceGeneral = [];
     var participant = [];
-    dataTemp.forEach(function(item) {
+    dataTemp.forEach(item => {
       balanceGeneral.push(parseFloat(item.money) - share);
       participant.push(item.participant);
     });
