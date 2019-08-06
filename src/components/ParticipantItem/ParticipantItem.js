@@ -99,7 +99,7 @@ class ParticipantItem extends Component {
               }}
               onClick={this.handleInput}
             >
-              Add
+              Save
             </Button>
           </div>
         </FormControl>
