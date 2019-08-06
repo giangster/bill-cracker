@@ -32,18 +32,15 @@ class ParticipantItem extends Component {
       return;
     }
     //Ensuring there is no duplicating participant
-    for (var i = 0, length = this.props.participants.length; i < length; i++) {
-      if (
-        this.state.participantName ===
-        this.props.participants[i].participantName
-      ) {
+    this.props.participants.forEach(participant => {
+      if (this.state.participantName === participant.participantName) {
         this.setState({
           messageOpenStatus: true,
           message: "There can not be two participant with the same name"
         });
         return;
       }
-    }
+    });
 
     let newParticipant = {
       participantName: this.state.participantName,

@@ -52,7 +52,7 @@ class ParticipantList extends Component {
 
   render() {
     var members = [];
-    for (var i = 0, length = this.props.participants.length; i < length; i++) {
+    this.props.participants.forEach((participant, i) =>
       members.push(
         <div
           key={i}
@@ -75,8 +75,9 @@ class ParticipantList extends Component {
             data={this.state.data}
           />
         </div>
-      );
-    }
+      )
+    );
+
     return (
       <div>
         {this.props.isParticipantList && (
