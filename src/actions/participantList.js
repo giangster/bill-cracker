@@ -5,7 +5,7 @@ import {
 } from "./types";
 
 export const addParticipant = () => {
-  return { type: ADD_PARTICIPANT_ITEM, payload: 1 };
+  return { type: ADD_PARTICIPANT_ITEM };
 };
 
 export const removeAllParticipants = () => {
