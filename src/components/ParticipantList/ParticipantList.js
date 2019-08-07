@@ -38,7 +38,6 @@ class ParticipantList extends Component {
 
   handleInput = object => {
     this.props.saveParticipant(object);
-    console.log(this.props.participants);
   };
 
   handleClose = () => {
@@ -52,7 +51,7 @@ class ParticipantList extends Component {
   };
 
   render() {
-    var members = [];
+    let members = [];
     this.props.participants.forEach((participant, i) =>
       members.push(
         <div
