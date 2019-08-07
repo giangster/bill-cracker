@@ -1,7 +1,7 @@
-import { ADD_PARTICIPANT, REMOVE_ALL_PARTICIPANTS } from "./types";
+import { ADD_PARTICIPANT_ITEM, REMOVE_ALL_PARTICIPANTS } from "./types";
 
 export const addParticipant = () => {
-  return { type: ADD_PARTICIPANT, payload: 1 };
+  return { type: ADD_PARTICIPANT_ITEM, payload: 1 };
 };
 
 export const removeAllParticipants = () => {

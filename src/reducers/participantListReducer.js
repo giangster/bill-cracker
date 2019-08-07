@@ -1,7 +1,7 @@
 import {
-  ADD_PARTICIPANT,
+  ADD_PARTICIPANT_ITEM,
   REMOVE_ALL_PARTICIPANTS,
-  DATA_COLLECT
+  SAVE_PARTICIPANT
 } from "../actions/types";
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 
 function participantReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_PARTICIPANT:
+    case ADD_PARTICIPANT_ITEM:
       return {
         ...state,
         participants: [...state.participants, {}]
@@ -20,7 +20,7 @@ function participantReducer(state = initialState, action) {
         ...state,
         participants: []
       };
-    case DATA_COLLECT:
+    case SAVE_PARTICIPANT:
       return {
         ...state,
         participants: [...state.participants, action.payload]
