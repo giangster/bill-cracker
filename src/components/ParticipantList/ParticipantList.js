@@ -3,10 +3,10 @@ import Button from "@material-ui/core/Button";
 import Result from "../Result/Result";
 import ParticipantItem from "../ParticipantItem/ParticipantItem";
 import Snackbar from "@material-ui/core/Snackbar";
-import { collectData } from "../../actions/index";
 import {
   addParticipant,
-  removeAllParticipants
+  removeAllParticipants,
+  saveParticipant
 } from "../../actions/participantList";
 import { connect } from "react-redux";
 
@@ -37,7 +37,7 @@ class ParticipantList extends Component {
   };
 
   handleInput = object => {
-    this.props.collectData(object);
+    this.props.saveParticipant(object);
   };
 
   handleClose = () => {
@@ -160,7 +160,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(removeAllParticipants());
   },
   collectData: object => {
-    dispatch(collectData(object));
+    dispatch(saveParticipant(object));
   }
 });
 
