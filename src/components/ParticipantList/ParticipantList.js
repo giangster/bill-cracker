@@ -38,6 +38,7 @@ class ParticipantList extends Component {
 
   handleInput = object => {
     this.props.saveParticipant(object);
+    console.log(this.props.participants);
   };
 
   handleClose = () => {
@@ -159,7 +160,7 @@ const mapDispatchToProps = dispatch => ({
   removeAllParticipants: () => {
     dispatch(removeAllParticipants());
   },
-  collectData: object => {
+  saveParticipant: object => {
     dispatch(saveParticipant(object));
   }
 });

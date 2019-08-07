@@ -15,7 +15,9 @@ class Result extends Component {
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
     this.props.isNotParticipantList();
+    console.log(this.props.participants);
     var dataTemp = this.props.participants;
+    dataTemp.shift();
     console.log(dataTemp);
     dataTemp.sort(function(participant1, participant2) {
       return participant1.money - participant2.money;
@@ -25,7 +27,7 @@ class Result extends Component {
     dataTemp.forEach(item => {
       total = total + parseFloat(item.money);
     });
-    var share = (total / this.props.participants.length).toFixed(2);
+    var share = (total / dataTemp.length).toFixed(2);
 
     this.setState({ sharePerPerson: share });
 
@@ -33,7 +35,7 @@ class Result extends Component {
     var participant = [];
     dataTemp.forEach(item => {
       balanceGeneral.push(parseFloat(item.money) - share);
-      participant.push(item.participant);
+      participant.push(item.participantName);
     });
 
     let i = 0;
