@@ -17,7 +17,7 @@ class Result extends Component {
     this.props.isNotParticipantList();
     const dataTemp = [...this.props.participants];
     dataTemp.shift();
-    dataTemp.sort(function(participant1, participant2) {
+    dataTemp.sort((participant1, participant2) => {
       return participant1.money - participant2.money;
     });
     let total = 0;
