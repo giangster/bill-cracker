@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Result from "../Result/Result";
-import ParticipantItem from "../ParticipantItem/ParticipantItem";
+import ParticipantForm from "../ParticipantItem/ParticipantForm";
 import Snackbar from "@material-ui/core/Snackbar";
 import {
   addParticipant,
@@ -9,6 +9,7 @@ import {
   saveParticipant
 } from "../../actions/participantList";
 import { connect } from "react-redux";
+import ParticipantItem from "../ParticipantItem/ParticipantItem";
 
 class ParticipantList extends Component {
   constructor(props) {
@@ -48,30 +49,32 @@ class ParticipantList extends Component {
 
   render() {
     let members = [];
-    this.props.participants.forEach((participant, i) =>
-      members.push(
-        <div
-          key={i}
-          style={{
-            margin: "auto",
-            marginTop: 15,
-            width: "20%",
-            borderWidth: 0.5,
-            borderStyle: "outset",
-            borderRadius: "5%",
-            backgroundColor: "white",
-            padding: 15
-          }}
-        >
-          <strong>Participant {i + 1}</strong>
 
-          <ParticipantItem
+    this.props.participants.forEach(
+      ({ participantName, money, description }, i) =>
+        members.push(
+          <div
             key={i}
-            handleInput={this.handleInput}
-            data={this.state.data}
-          />
-        </div>
-      )
+            style={{
+              margin: "auto",
+              marginTop: 15,
+              width: "20%",
+              borderWidth: 0.5,
+              borderStyle: "outset",
+              borderRadius: "5%",
+              backgroundColor: "white",
+              padding: 15
+            }}
+          >
+            <strong>Participant {i + 1}</strong>
+
+            <ParticipantItem
+              participantName={participantName}
+              money={money}
+              description={description}
+            />
+          </div>
+        )
     );
 
     return (
@@ -85,6 +88,7 @@ class ParticipantList extends Component {
               Okay. Let's add some more information before we can calculate your
               share!
             </p>
+            <ParticipantForm handleInput={this.handleInput} />
             {members}
             <Button
               variant="contained"
