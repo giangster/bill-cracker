@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import Result from "../Result/Result";
-import ParticipantForm from "../ParticipantItem/ParticipantForm";
 import Snackbar from "@material-ui/core/Snackbar";
 import {
   addParticipant,
@@ -10,6 +8,7 @@ import {
 } from "../../actions/participantList";
 import { connect } from "react-redux";
 import ParticipantItem from "../ParticipantItem/ParticipantItem";
+import { TextField, Button } from "@material-ui/core"
 
 class ParticipantList extends Component {
   constructor(props) {
@@ -17,24 +16,38 @@ class ParticipantList extends Component {
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isResultPage: false
+      isResultPage: false,
+      participantName: "",
+      money: 0,
+      description: ""
     };
   }
 
   isResultPage = () => {
     this.props.participants.length > 1
       ? this.setState({
-          ...this.state,
-          isResultPage: true
-        })
+        ...this.state,
+        isResultPage: true
+      })
       : this.setState({
-          messageOpenStatus: true,
-          message: "There has to be at least two participant"
-        });
+        messageOpenStatus: true,
+        message: "There has to be at least two participant"
+      });
   };
 
-  handleInput = object => {
-    this.props.saveParticipant(object);
+  handleInput = e => {
+    e.preventDefault();
+    
+    let participant = {
+      participantName: this.state.participantName,
+      money: this.state.money,
+      description: this.state.description
+    }
+    this.props.saveParticipant(participant);
+  };
+
+  handleChange = event => {
+    this.setState({ ...this.state, [event.target.name]: event.target.value });
   };
 
   handleClose = () => {
@@ -87,7 +100,12 @@ class ParticipantList extends Component {
               Okay. Let's add some more information before we can calculate your
               share!
             </p>
-            <ParticipantForm handleInput={this.handleInput} />
+            <form onSubmit={this.handleInput}>
+              <TextField required name="participantName" label="Name" type="text" onChange={this.handleChange} value={this.state.participantName} /> <br />
+              <TextField required name="money" label="Spent money" type="number" onChange={this.handleChange} value={this.state.money} /> <br />
+              <TextField name="description" label="Description" type="text" onChange={this.handleChange} value={this.state.description} /> <br />
+              <Button type="submit" variant="contained" color="primary" style={{ margin: 20 }}>Save</Button>
+            </form>
             <div style={{ margin: "auto" }}>
               <Button
                 style={{ marginLeft: 15 }}
