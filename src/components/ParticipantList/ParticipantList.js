@@ -56,18 +56,17 @@ class ParticipantList extends Component {
           <div
             key={i}
             style={{
-              margin: "auto",
-              marginTop: 15,
+              display: "flex",
               width: "20%",
+              margin: 10,
+              alignItems: "center",
+              justifyContent: "center",
               borderWidth: 0.5,
-              borderStyle: "outset",
               borderRadius: "5%",
               backgroundColor: "white",
-              padding: 15
+              padding: 5
             }}
           >
-            <strong>Participant {i + 1}</strong>
-
             <ParticipantItem
               participantName={participantName}
               money={money}
@@ -89,20 +88,6 @@ class ParticipantList extends Component {
               share!
             </p>
             <ParticipantForm handleInput={this.handleInput} />
-            {members}
-            <Button
-              variant="contained"
-              color="primary"
-              style={{
-                margin: 15,
-                backgroundImage:
-                  "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
-              }}
-              onClick={this.props.addParticipant}
-            >
-              Add participant
-            </Button>
-
             <div style={{ margin: "auto" }}>
               <Button
                 style={{ marginLeft: 15 }}
@@ -138,6 +123,8 @@ class ParticipantList extends Component {
                 message={this.state.message}
               />
             </div>
+            <hr />
+            {members}
           </div>
         )}
         {this.state.isResultPage && <Result />}
