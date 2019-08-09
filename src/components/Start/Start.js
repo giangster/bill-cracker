@@ -119,7 +119,6 @@ export default class Start extends Component {
           <div>
             <ParticipantList
               isParticipantList={this.state.isParticipantList}
-              isNotParticipantList={this.isNotParticipantList}
               isStart={this.isStart}
               nameOfTrip={this.state.nameOfTrip}
             />

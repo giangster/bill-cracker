@@ -32,10 +32,6 @@ class ParticipantList extends Component {
         });
   };
 
-  isNotParticipantList = () => {
-    this.props.isNotParticipantList();
-  };
-
   handleInput = object => {
     this.props.saveParticipant(object);
   };
@@ -140,9 +136,7 @@ class ParticipantList extends Component {
             </div>
           </div>
         )}
-        {this.state.isResultPage && (
-          <Result isNotParticipantList={this.isNotParticipantList} />
-        )}
+        {this.state.isResultPage && <Result />}
       </div>
     );
   }
