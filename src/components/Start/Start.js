@@ -18,7 +18,6 @@ export default class Start extends Component {
 
   isStart = () => {
     this.setState({
-      ...this.state,
       isStart: true,
       isParticipantList: false,
       nameOfTrip: undefined

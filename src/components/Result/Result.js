@@ -54,11 +54,7 @@ class Result extends Component {
   };
 
   isStart = () => {
-    this.setState({
-      ...this.state,
-      isResultPage: false,
-      isStart: true
-    });
+    this.props.clearState();
   };
 
   render() {

@@ -69,7 +69,7 @@ class ParticipantList extends Component {
   clearState = () => {
     this.props.isStart();
     this.props.removeAllParticipants();
-    this.setState({ isResultPage: false });
+    this.setState({ isResult: false });
   };
 
   render() {
@@ -182,7 +182,9 @@ class ParticipantList extends Component {
             </div>
           </div>
         )}
-        {this.state.isResult && <Result isResult={this.isResult} />}
+        {this.state.isResult && (
+          <Result isResult={this.isResult} clearState={this.clearState} />
+        )}
       </div>
     );
   }
