@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import Result from "../Result/Result";
-import ParticipantItem from "../ParticipantItem/ParticipantItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import {
   addParticipant,
@@ -9,6 +7,8 @@ import {
   saveParticipant
 } from "../../actions/participantList";
 import { connect } from "react-redux";
+import ParticipantItem from "../ParticipantItem/ParticipantItem";
+import { TextField, Button } from "@material-ui/core";
 
 class ParticipantList extends Component {
   constructor(props) {
@@ -16,28 +16,50 @@ class ParticipantList extends Component {
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isResultPage: false
+      isResult: false,
+      participantName: "",
+      money: 0,
+      description: ""
     };
   }
 
-  isResultPage = () => {
-    this.props.participants.length > 1
-      ? this.setState({
-          ...this.state,
-          isResultPage: true
-        })
-      : this.setState({
-          messageOpenStatus: true,
-          message: "There has to be at least two participant"
-        });
+  isResult = () => {
+    if (this.props.participants.length > 1) {
+      this.props.isResult();
+      this.setState({
+        ...this.state,
+        isResult: true
+      });
+    } else {
+      this.setState({
+        messageOpenStatus: true,
+        message: "There has to be at least two participant"
+      });
+    }
   };
 
-  isNotParticipantList = () => {
-    this.props.isNotParticipantList();
+  handleInput = e => {
+    e.preventDefault();
+
+    let participant = {
+      participantName: this.state.participantName,
+      money: this.state.money,
+      description: this.state.description
+    };
+    this.props.saveParticipant(participant);
+    this.cleanInput();
   };
 
-  handleInput = object => {
-    this.props.saveParticipant(object);
+  cleanInput() {
+    this.setState({
+      participantName: "",
+      money: 0,
+      description: ""
+    });
+  }
+
+  handleChange = event => {
+    this.setState({ ...this.state, [event.target.name]: event.target.value });
   };
 
   handleClose = () => {
@@ -47,35 +69,23 @@ class ParticipantList extends Component {
   clearState = () => {
     this.props.isStart();
     this.props.removeAllParticipants();
-    this.setState({ isResultPage: false });
+    this.setState({ isResult: false });
   };
 
   render() {
     let members = [];
-    this.props.participants.forEach((participant, i) =>
-      members.push(
-        <div
-          key={i}
-          style={{
-            margin: "auto",
-            marginTop: 15,
-            width: "20%",
-            borderWidth: 0.5,
-            borderStyle: "outset",
-            borderRadius: "5%",
-            backgroundColor: "white",
-            padding: 15
-          }}
-        >
-          <strong>Participant {i + 1}</strong>
 
-          <ParticipantItem
-            key={i}
-            handleInput={this.handleInput}
-            data={this.state.data}
-          />
-        </div>
-      )
+    this.props.participants.forEach(
+      ({ participantName, money, description }, i) =>
+        members.push(
+          <div key={i}>
+            <ParticipantItem
+              participantName={participantName}
+              money={money}
+              description={description}
+            />
+          </div>
+        )
     );
 
     return (
@@ -89,20 +99,47 @@ class ParticipantList extends Component {
               Okay. Let's add some more information before we can calculate your
               share!
             </p>
-            {members}
-            <Button
-              variant="contained"
-              color="primary"
-              style={{
-                margin: 15,
-                backgroundImage:
-                  "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
-              }}
-              onClick={this.props.addParticipant}
-            >
-              Add participant
-            </Button>
-
+            <form onSubmit={this.handleInput}>
+              <TextField
+                required
+                name="participantName"
+                label="Name"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.participantName}
+              />
+              <br />
+              <TextField
+                required
+                name="money"
+                label="Spent money"
+                type="number"
+                onChange={this.handleChange}
+                value={this.state.money}
+              />
+              <br />
+              <TextField
+                name="description"
+                label="Description"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.description}
+              />
+              <br />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{
+                  width: 10,
+                  margin: 15,
+                  backgroundImage:
+                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+                }}
+              >
+                Save
+              </Button>
+            </form>
             <div style={{ margin: "auto" }}>
               <Button
                 style={{ marginLeft: 15 }}
@@ -120,7 +157,7 @@ class ParticipantList extends Component {
                   backgroundImage:
                     "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
                 }}
-                onClick={this.isResultPage}
+                onClick={this.isResult}
               >
                 Calculate
               </Button>
@@ -138,10 +175,15 @@ class ParticipantList extends Component {
                 message={this.state.message}
               />
             </div>
+            <br />
+            <hr />
+            <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+              {members}
+            </div>
           </div>
         )}
-        {this.state.isResultPage && (
-          <Result isNotParticipantList={this.isNotParticipantList} />
+        {this.state.isResult && (
+          <Result isResult={this.isResult} clearState={this.clearState} />
         )}
       </div>
     );
