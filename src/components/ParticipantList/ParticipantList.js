@@ -75,20 +75,7 @@ class ParticipantList extends Component {
     this.props.participants.forEach(
       ({ participantName, money, description }, i) =>
         members.push(
-          <div
-            key={i}
-            style={{
-              display: "flex",
-              width: "20%",
-              margin: 10,
-              alignItems: "center",
-              justifyContent: "center",
-              borderWidth: 0.5,
-              borderRadius: "5%",
-              backgroundColor: "white",
-              padding: 5
-            }}
-          >
+          <div key={i}>
             <ParticipantItem
               participantName={participantName}
               money={money}
@@ -187,7 +174,9 @@ class ParticipantList extends Component {
             </div>
             <br />
             <hr />
-            {members}
+            <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+              {members}
+            </div>
           </div>
         )}
         {this.state.isResultPage && <Result />}

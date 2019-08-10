@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 
 const ParticipantItem = ({ participantName, money, description }) => {
   return (
-    <div>
+    <div style={{ width: 250, margin: 30 }}>
       <p>
         <strong>Name: </strong> {participantName}
       </p>
