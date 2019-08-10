@@ -8,7 +8,7 @@ import {
 } from "../../actions/participantList";
 import { connect } from "react-redux";
 import ParticipantItem from "../ParticipantItem/ParticipantItem";
-import { TextField, Button } from "@material-ui/core"
+import { TextField, Button } from "@material-ui/core";
 
 class ParticipantList extends Component {
   constructor(props) {
@@ -26,23 +26,23 @@ class ParticipantList extends Component {
   isResultPage = () => {
     this.props.participants.length > 1
       ? this.setState({
-        ...this.state,
-        isResultPage: true
-      })
+          ...this.state,
+          isResultPage: true
+        })
       : this.setState({
-        messageOpenStatus: true,
-        message: "There has to be at least two participant"
-      });
+          messageOpenStatus: true,
+          message: "There has to be at least two participant"
+        });
   };
 
   handleInput = e => {
     e.preventDefault();
-    
+
     let participant = {
       participantName: this.state.participantName,
       money: this.state.money,
       description: this.state.description
-    }
+    };
     this.props.saveParticipant(participant);
   };
 
@@ -101,10 +101,45 @@ class ParticipantList extends Component {
               share!
             </p>
             <form onSubmit={this.handleInput}>
-              <TextField required name="participantName" label="Name" type="text" onChange={this.handleChange} value={this.state.participantName} /> <br />
-              <TextField required name="money" label="Spent money" type="number" onChange={this.handleChange} value={this.state.money} /> <br />
-              <TextField name="description" label="Description" type="text" onChange={this.handleChange} value={this.state.description} /> <br />
-              <Button type="submit" variant="contained" color="primary" style={{ margin: 20 }}>Save</Button>
+              <TextField
+                required
+                name="participantName"
+                label="Name"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.participantName}
+              />
+              <br />
+              <TextField
+                required
+                name="money"
+                label="Spent money"
+                type="number"
+                onChange={this.handleChange}
+                value={this.state.money}
+              />
+              <br />
+              <TextField
+                name="description"
+                label="Description"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.description}
+              />
+              <br />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{
+                  width: 10,
+                  margin: 15,
+                  backgroundImage:
+                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
+                }}
+              >
+                Save
+              </Button>
             </form>
             <div style={{ margin: "auto" }}>
               <Button
@@ -141,6 +176,7 @@ class ParticipantList extends Component {
                 message={this.state.message}
               />
             </div>
+            <br />
             <hr />
             {members}
           </div>
