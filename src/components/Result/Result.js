@@ -77,18 +77,6 @@ class Result extends Component {
         <div style={{ fontSize: 20 }} key={index}>
           {participant.participantName} pays {participant.money} euros
         </div>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)",
-            margin: 7
-          }}
-        >
-          Edit
-        </Button>
       </div>
     ));
 
