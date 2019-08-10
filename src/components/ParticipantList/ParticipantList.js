@@ -44,7 +44,16 @@ class ParticipantList extends Component {
       description: this.state.description
     };
     this.props.saveParticipant(participant);
+    this.cleanInput();
   };
+
+  cleanInput() {
+    this.setState({
+      participantName: "",
+      money: 0,
+      description: ""
+    });
+  }
 
   handleChange = event => {
     this.setState({ ...this.state, [event.target.name]: event.target.value });
