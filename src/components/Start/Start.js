@@ -16,6 +16,15 @@ export default class Start extends Component {
     };
   }
 
+  isStart = () => {
+    this.setState({
+      ...this.state,
+      isStart: true,
+      isParticipantList: false,
+      nameOfTrip: undefined
+    });
+  };
+
   isParticipantList = () => {
     this.state.nameOfTrip !== ""
       ? this.setState({
@@ -29,17 +38,8 @@ export default class Start extends Component {
         });
   };
 
-  isNotParticipantList = () => {
+  isResult = () => {
     this.setState({ ...this.state, isParticipantList: false });
-  };
-
-  isStart = () => {
-    this.setState({
-      ...this.state,
-      isStart: true,
-      isParticipantList: false,
-      nameOfTrip: undefined
-    });
   };
 
   handleChange = event => {
@@ -118,8 +118,9 @@ export default class Start extends Component {
         {this.isParticipantList && (
           <div>
             <ParticipantList
-              isParticipantList={this.state.isParticipantList}
               isStart={this.isStart}
+              isParticipantList={this.state.isParticipantList}
+              isResult={this.isResult}
               nameOfTrip={this.state.nameOfTrip}
             />
           </div>

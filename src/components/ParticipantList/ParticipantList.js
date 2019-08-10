@@ -16,23 +16,26 @@ class ParticipantList extends Component {
     this.state = {
       message: "",
       messageOpenStatus: false,
-      isResultPage: false,
+      isResult: false,
       participantName: "",
       money: 0,
       description: ""
     };
   }
 
-  isResultPage = () => {
-    this.props.participants.length > 1
-      ? this.setState({
-          ...this.state,
-          isResultPage: true
-        })
-      : this.setState({
-          messageOpenStatus: true,
-          message: "There has to be at least two participant"
-        });
+  isResult = () => {
+    if (this.props.participants.length > 1) {
+      this.props.isResult();
+      this.setState({
+        ...this.state,
+        isResult: true
+      });
+    } else {
+      this.setState({
+        messageOpenStatus: true,
+        message: "There has to be at least two participant"
+      });
+    }
   };
 
   handleInput = e => {
@@ -154,7 +157,7 @@ class ParticipantList extends Component {
                   backgroundImage:
                     "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
                 }}
-                onClick={this.isResultPage}
+                onClick={this.isResult}
               >
                 Calculate
               </Button>
@@ -179,7 +182,7 @@ class ParticipantList extends Component {
             </div>
           </div>
         )}
-        {this.state.isResultPage && <Result />}
+        {this.state.isResult && <Result isResult={this.isResult} />}
       </div>
     );
   }

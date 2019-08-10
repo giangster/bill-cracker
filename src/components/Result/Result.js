@@ -14,6 +14,7 @@ class Result extends Component {
 
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
+    this.props.isResult();
     const dataTemp = [...this.props.participants];
     dataTemp.shift();
     dataTemp.sort((participant1, participant2) => {
