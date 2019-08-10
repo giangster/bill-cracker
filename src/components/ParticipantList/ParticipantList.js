@@ -40,7 +40,15 @@ class ParticipantList extends Component {
 
   handleInput = e => {
     e.preventDefault();
-
+    //Early return technique
+    //Validating input
+    if (this.state.participantName === "" || this.state.money < 0) {
+      this.setState({
+        messageOpenStatus: true,
+        message: "Name must not be empty and money must not be less than 0"
+      });
+      return;
+    }
     let participant = {
       participantName: this.state.participantName,
       money: this.state.money,
