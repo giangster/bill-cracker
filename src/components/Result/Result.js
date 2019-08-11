@@ -14,12 +14,12 @@ class Result extends Component {
 
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
-    this.props.isResult();
-    const dataTemp = [...this.props.participants];
-    dataTemp.shift();
+    let dataTemp = [...this.props.participants];
+
     dataTemp.sort((participant1, participant2) => {
       return participant1.money - participant2.money;
     });
+
     let total = 0;
 
     dataTemp.forEach(item => {
@@ -46,11 +46,16 @@ class Result extends Component {
       );
       result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
 
+      debt = parseFloat(debt);
+
       balanceGeneral[i] += debt;
+
       balanceGeneral[j] -= debt;
+
       balanceGeneral[i] === 0 ? i++ : j--;
     }
     this.setState({ result: result });
+    this.props.isResult();
   };
 
   isStart = () => {
@@ -77,18 +82,6 @@ class Result extends Component {
         <div style={{ fontSize: 20 }} key={index}>
           {participant.participantName} pays {participant.money} euros
         </div>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)",
-            margin: 7
-          }}
-        >
-          Edit
-        </Button>
       </div>
     ));
 
