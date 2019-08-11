@@ -35,7 +35,6 @@ class Result extends Component {
       balanceGeneral.push(parseFloat(item.money) - share);
       participant.push(item.participantName);
     });
-    console.log(balanceGeneral);
 
     let i = 0;
     let j = participant.length - 1;
@@ -45,13 +44,14 @@ class Result extends Component {
       debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(
         2
       );
-      console.log(debt);
       result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
-      console.log(result);
+
+      debt = parseFloat(debt);
+
       balanceGeneral[i] += debt;
-      console.log(balanceGeneral);
+
       balanceGeneral[j] -= debt;
-      console.log(balanceGeneral);
+
       balanceGeneral[i] === 0 ? i++ : j--;
     }
     this.setState({ result: result });
