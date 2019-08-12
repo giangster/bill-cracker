@@ -14,46 +14,8 @@ class Result extends Component {
 
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
-    let dataTemp = [...this.props.participants];
-
-    dataTemp.sort((participant1, participant2) => {
-      return participant1.money - participant2.money;
-    });
-
-    let total = 0;
-
-    dataTemp.forEach(item => {
-      total = total + parseFloat(item.money);
-    });
-    let share = (total / dataTemp.length).toFixed(2);
-
-    this.setState({ sharePerPerson: share });
-
-    let balanceGeneral = [];
-    let participant = [];
-    dataTemp.forEach(item => {
-      balanceGeneral.push(parseFloat(item.money) - share);
-      participant.push(item.participantName);
-    });
-
-    let i = 0;
-    let j = participant.length - 1;
-    let debt;
-    let result = [];
-    while (i < j) {
-      debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(
-        2
-      );
-      result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
-
-      debt = parseFloat(debt);
-
-      balanceGeneral[i] += debt;
-
-      balanceGeneral[j] -= debt;
-
-      balanceGeneral[i] === 0 ? i++ : j--;
-    }
+    let result = calculateShare(this.props.participants)
+    this.setState({ sharePerPerson: calculateAverage(this.props.participants) });
     this.setState({ result: result });
     this.props.isResult();
   };
@@ -117,6 +79,48 @@ class Result extends Component {
       </div>
     );
   }
+}
+
+const calculateShare = participants => {
+  let participantsTemp = [...participants];
+
+  participantsTemp.sort((participant1, participant2) => {
+    return participant1.money - participant2.money;
+  });
+
+
+  let share = calculateAverage(participantsTemp).toFixed(2)
+
+  let balanceGeneral = [];
+  let participant = [];
+  participantsTemp.forEach(item => {
+    balanceGeneral.push(parseFloat(item.money) - share);
+    participant.push(item.participantName);
+  });
+
+  let i = 0;
+  let j = participant.length - 1;
+  let debt;
+  let result = [];
+  while (i < j) {
+    debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(2);
+    result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
+
+    debt = parseFloat(debt);
+
+    balanceGeneral[i] += debt;
+    balanceGeneral[j] -= debt;
+
+    balanceGeneral[i] === 0 ? i++ : j--;
+  }
+
+  return result;
+}
+
+const calculateAverage = participants => {
+  let moneys = participants.map(participant => parseFloat(participant.money))
+  let sum = moneys.reduce((m1, m2) => m1 + m2, 0);
+  return sum / moneys.length;
 }
 
 const mapStateToProps = state => ({
