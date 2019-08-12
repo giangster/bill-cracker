@@ -14,9 +14,8 @@ class Result extends Component {
 
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
-    let result = calculateShare(this.props.participants)
     this.setState({ sharePerPerson: calculateAverage(this.props.participants) });
-    this.setState({ result: result });
+    this.setState({ result: calculateShare(this.props.participants) });
     this.props.isResult();
   };
 
