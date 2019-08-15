@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ParticipantList from "../ParticipantList/ParticipantList";
 import Snackbar from "@material-ui/core/Snackbar";
+import "./Start.css";
 
 export default class Start extends Component {
   constructor(props) {
@@ -56,21 +57,11 @@ export default class Start extends Component {
   };
 
   render() {
-    const divStyle = {
-      margin: "auto",
-      width: "20%",
-      borderWidth: 0.5,
-      borderStyle: "outset",
-      borderRadius: "5%",
-      backgroundColor: "white",
-      paddingBottom: 15
-    };
-
     return (
       <div>
         {this.state.isStart && (
-          <div style={{ height: 400 }}>
-            <div style={divStyle}>
+          <div className="trip-name-container">
+            <div className="trip-name">
               <div>
                 <TextField
                   required
@@ -87,14 +78,10 @@ export default class Start extends Component {
             </div>
             <div style={{ margin: 15 }}>
               <Button
-                type="submit"
                 variant="contained"
                 color="primary"
                 onClick={this.isParticipantList}
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
-                }}
+                className="btn-primary"
               >
                 Let's go!
               </Button>
