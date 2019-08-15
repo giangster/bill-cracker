@@ -1,0 +1,33 @@
+.form {
+  margin: 15px;
+}
+
+.btn-primary {
+  margin: 15;
+  background-image: linear-gradient(
+    to right bottom,
+    #2196f3,
+    #2985e5,
+    #3174d6,
+    #3962c6,
+    #3f51b5
+  );
+}
+
+.btn-container {
+  width: 15%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.calculate-btn {
+  float: right;
+  background-image: linear-gradient(
+    to right bottom,
+    #2196f3,
+    #2985e5,
+    #3174d6,
+    #3962c6,
+    #3f51b5
+  );
+}
