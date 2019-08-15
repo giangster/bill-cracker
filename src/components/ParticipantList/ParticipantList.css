@@ -15,7 +15,7 @@
 }
 
 .btn-container {
-  width: 15%;
+  width: 250px;
   margin: auto;
   margin-bottom: 20px;
 }
@@ -30,4 +30,10 @@
     #3962c6,
     #3f51b5
   );
+}
+
+.member-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }

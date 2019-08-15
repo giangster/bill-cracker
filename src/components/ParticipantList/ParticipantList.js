@@ -178,9 +178,7 @@ class ParticipantList extends Component {
             </div>
 
             <hr />
-            <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
-              {members}
-            </div>
+            <div className="member-container">{members}</div>
           </div>
         )}
         {this.state.isResult && (
