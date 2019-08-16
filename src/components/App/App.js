@@ -9,7 +9,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <div>
-          <h1 style={{ margin: 10, marginBottom: 30 }}>Bill Cracker App</h1>
+          <h1>Bill Cracker App</h1>
         </div>
         <Start />
       </div>

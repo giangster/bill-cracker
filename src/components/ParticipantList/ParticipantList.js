@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./ParticipantList.css";
 import Result from "../Result/Result";
 import Snackbar from "@material-ui/core/Snackbar";
 import {
@@ -107,7 +108,7 @@ class ParticipantList extends Component {
               Okay. Let's add some more information before we can calculate your
               share!
             </p>
-            <form onSubmit={this.handleInput}>
+            <form onSubmit={this.handleInput} className="form">
               <TextField
                 required
                 name="participantName"
@@ -134,23 +135,19 @@ class ParticipantList extends Component {
                 value={this.state.description}
               />
               <br />
+              <br />
               <Button
                 type="submit"
+                className="btn-primary"
                 variant="contained"
                 color="primary"
-                style={{
-                  width: 10,
-                  margin: 15,
-                  backgroundImage:
-                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
-                }}
               >
                 Save
               </Button>
             </form>
-            <div style={{ margin: "auto" }}>
+            <div className="btn-container">
               <Button
-                style={{ marginLeft: 15 }}
+                className="back-btn"
                 variant="contained"
                 color="default"
                 onClick={this.clearState}
@@ -160,11 +157,7 @@ class ParticipantList extends Component {
               <Button
                 variant="contained"
                 color="primary"
-                style={{
-                  marginLeft: 15,
-                  backgroundImage:
-                    "linear-gradient(to right bottom, #2196f3, #2985e5, #3174d6, #3962c6, #3f51b5)"
-                }}
+                className="calculate-btn"
                 onClick={this.isResult}
               >
                 Calculate
@@ -183,11 +176,9 @@ class ParticipantList extends Component {
                 message={this.state.message}
               />
             </div>
-            <br />
+
             <hr />
-            <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
-              {members}
-            </div>
+            <div className="member-container">{members}</div>
           </div>
         )}
         {this.state.isResult && (

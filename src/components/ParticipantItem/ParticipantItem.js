@@ -1,8 +1,9 @@
 import React from "react";
+import "./ParticipantItem.css";
 
 const ParticipantItem = ({ participantName, money, description }) => {
   return (
-    <div style={{ width: 250, margin: 30 }}>
+    <div className="participant-item-container">
       <p>
         <strong>Name: </strong> {participantName}
       </p>
