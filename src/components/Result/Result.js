@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import "react-table/react-table.css";
 import { connect } from "react-redux";
 
 class Result extends Component {
@@ -14,7 +13,9 @@ class Result extends Component {
 
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
-    this.setState({ sharePerPerson: calculateAverage(this.props.participants) });
+    this.setState({
+      sharePerPerson: calculateAverage(this.props.participants)
+    });
     this.setState({ result: calculateShare(this.props.participants) });
     this.props.isResult();
   };
@@ -80,15 +81,14 @@ class Result extends Component {
   }
 }
 
-const calculateShare = participants => {
+export const calculateShare = participants => {
   let participantsTemp = [...participants];
 
   participantsTemp.sort((participant1, participant2) => {
     return participant1.money - participant2.money;
   });
 
-
-  let share = calculateAverage(participantsTemp).toFixed(2)
+  let share = calculateAverage(participantsTemp).toFixed(2);
 
   let balanceGeneral = [];
   let participant = [];
@@ -103,8 +103,9 @@ const calculateShare = participants => {
   let result = [];
   while (i < j) {
     debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(2);
-    result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
-
+    if (debt > 0) {
+      result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
+    }
     debt = parseFloat(debt);
 
     balanceGeneral[i] += debt;
@@ -114,13 +115,13 @@ const calculateShare = participants => {
   }
 
   return result;
-}
+};
 
-const calculateAverage = participants => {
-  let moneys = participants.map(participant => parseFloat(participant.money))
+export const calculateAverage = participants => {
+  let moneys = participants.map(participant => parseFloat(participant.money));
   let sum = moneys.reduce((m1, m2) => m1 + m2, 0);
   return sum / moneys.length;
-}
+};
 
 const mapStateToProps = state => ({
   participants: state.participantList.participants
