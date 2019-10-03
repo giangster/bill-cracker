@@ -53,8 +53,7 @@ describe("Calculate share tests", () => {
     ];
 
     expect(calculateShare(participants)).toStrictEqual([
-      "Dog owes Duck 1.00 euros.",
-      "Cat owes Duck 0.00 euros."
+      "Dog owes Duck 1.00 euros."
     ]);
   });
 });

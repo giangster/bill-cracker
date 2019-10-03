@@ -104,8 +104,9 @@ export const calculateShare = participants => {
   let result = [];
   while (i < j) {
     debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(2);
-    result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
-
+    if (debt > 0) {
+      result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
+    }
     debt = parseFloat(debt);
 
     balanceGeneral[i] += debt;
