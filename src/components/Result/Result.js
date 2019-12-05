@@ -14,7 +14,7 @@ class Result extends Component {
   //Algorithm to calculate the share for each person
   componentDidMount = () => {
     this.setState({
-      sharePerPerson: calculateAverage(this.props.participants)
+      sharePerPerson: calculateAverage(this.props.participants).toFixed(2)
     });
     this.setState({ result: calculateShare(this.props.participants) });
     this.props.isResult();
@@ -94,17 +94,23 @@ export const calculateShare = participants => {
   let participant = [];
   participantsTemp.forEach(item => {
     balanceGeneral.push(parseFloat(item.money) - share);
+    console.log(balanceGeneral);
     participant.push(item.participantName);
   });
 
   let i = 0;
   let j = participant.length - 1;
+  console.log(i, j);
   let debt;
   let result = [];
   while (i < j) {
-    debt = Math.min(Math.abs(balanceGeneral[i], balanceGeneral[j])).toFixed(2);
+    debt = Math.min(Math.abs(balanceGeneral[i]), Math.abs(balanceGeneral[j]));
+    console.log(debt, balanceGeneral[i], balanceGeneral[j]);
     if (debt > 0) {
-      result.push(`${participant[i]} owes ${participant[j]} ${debt} euros.`);
+      result.push(
+        `${participant[i]} owes ${participant[j]} ${debt.toFixed(2)} euros.`
+      );
+      console.log(result);
     }
     debt = parseFloat(debt);
 
